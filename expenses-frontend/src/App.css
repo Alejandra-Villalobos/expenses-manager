@@ -2,9 +2,10 @@
     background-color: aquamarine;
     display: flex;
     justify-content: center;
+    flex-direction: column;
 }
 
-.login-form{
+.login-form, .register-form{
     display: flex;
     flex-direction: column;
 }

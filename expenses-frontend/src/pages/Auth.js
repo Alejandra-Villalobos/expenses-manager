@@ -14,7 +14,7 @@ const Login = () => {
 
     const onShowRegForm = () => {
         setShowRegisterForm(!showRegisterForm);
-        setShowLoginForm(showLoginForm);
+        setShowLoginForm(!showLoginForm);
     }
 
     const handeFormChange = (e) => {
@@ -47,6 +47,7 @@ const Login = () => {
     return (
         <div className="login-page">
             {showLoginForm &&
+            <>
             <form onSubmit={handleSubmit} className="login-form">
                 <label>
                     Usuario
@@ -65,8 +66,12 @@ const Login = () => {
                         onChange={handeFormChange}/>
                 </label>
                 <input type="submit"/>
-            </form>}
+            </form>
+            <button onClick={onShowRegForm}>No tienes cuenta?</button>
+            </>}
+
             {showRegisterForm &&
+            <>
             <form onSubmit={handleSubmit} className="register-form">
                 <label>
                     Email
@@ -93,8 +98,9 @@ const Login = () => {
                         onChange={handeFormRegChange}/>
                 </label>
                 <input type="submit"/>
-            </form>}
+            </form>
             <button onClick={onShowLoginForm}>Iniciar sesión</button>
+            </>}
         </div>
     );
 }

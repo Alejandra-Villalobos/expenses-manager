@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import App from './App';
 import Layout from './pages/Layout';
 import Auth from './pages/Auth';
+import Home from './pages/Home';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -12,6 +13,7 @@ root.render(
     <Routes>
       <Route path='/' element={<Layout/>}>
         <Route index element={<Auth/>}/>
+        <Route path='/home' element={<Home/>}/>
       </Route>
     </Routes>
   </BrowserRouter>

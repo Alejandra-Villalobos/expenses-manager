@@ -1,5 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
+import { Outlet, Link } from "react-router-dom"
+
 
 const Login = () => {
     const [formValues, setFormValues] = useState([]);
@@ -45,6 +47,7 @@ const Login = () => {
     }
 
     return (
+        <>
         <div className="login-page">
             {showLoginForm &&
             <>
@@ -65,7 +68,7 @@ const Login = () => {
                         value={formValues.userPass || ""}
                         onChange={handeFormChange}/>
                 </label>
-                <input type="submit"/>
+                <Link to={'/home'}><input type="submit" value="Iniciar Sesión"/></Link>
             </form>
             <button onClick={onShowRegForm}>No tienes cuenta?</button>
             </>}
@@ -97,11 +100,13 @@ const Login = () => {
                         value={formRegValues.userPass || ""}
                         onChange={handeFormRegChange}/>
                 </label>
-                <input type="submit"/>
+                <Link to={'/home'}><input type="submit" value="Registrarse"/></Link>
             </form>
-            <button onClick={onShowLoginForm}>Iniciar sesión</button>
+            <button onClick={onShowLoginForm}>Ya tienes cuenta?</button>
             </>}
         </div>
+        <Outlet/>
+        </>
     );
 }
 

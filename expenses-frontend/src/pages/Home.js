@@ -1,7 +1,6 @@
 import React from 'react'
-import SideMenu from './SideMenu.js'
-import NavBar from './NavBar.js'
-
+import SideMenu from '../components/SideMenu.js'
+import NavBar from '../components/NavBar.js'
 const Home = () => {
   return (
     <>

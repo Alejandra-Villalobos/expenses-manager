@@ -5,6 +5,7 @@ import './App.css';
 
 import Auth from './pages/Auth';
 import Home from './pages/Home';
+import Banks from './pages/Banks';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -12,6 +13,7 @@ root.render(
     <Routes>
       <Route index element={<Auth/>}/>
       <Route path='/home' element={<Home/>}/>
+      <Route path='/banks' element={<Banks/>}/>
     </Routes>
   </BrowserRouter>
 );

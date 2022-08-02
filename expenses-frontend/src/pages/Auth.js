@@ -1,6 +1,9 @@
 import React from 'react'
 import { useState } from 'react'
 import { Outlet, Link } from "react-router-dom"
+import loginImg from '../assets/login.png'
+import registerImg from '../assets/register.png'
+
 
 
 const Login = () => {
@@ -48,62 +51,66 @@ const Login = () => {
 
     return (
         <>
-        <div className="login-page">
+        <div>
             {showLoginForm &&
-            <>
-            <form onSubmit={handleSubmit} className="login-form">
-                <label>
-                    Usuario
-                    <input
-                        type="text"
-                        name='userName'
-                        value={formValues.userName || ""}
-                        onChange={handeFormChange}/>
-                </label>
-                <label>
-                    Contraseña
-                    <input
-                        type="password"
-                        name='userPass'
-                        value={formValues.userPass || ""}
-                        onChange={handeFormChange}/>
-                </label>
-                <Link to={'/home'}><input type="submit" value="Iniciar Sesión"/></Link>
-            </form>
-            <button onClick={onShowRegForm}>No tienes cuenta?</button>
-            </>}
-
+            <div className='flex flex-row justify-around mt-36'>
+                <img src={loginImg} alt='login'/>
+                <form onSubmit={handleSubmit} className="rounded-lg border-cyan-400 border-2 p-5">
+                    <div class="grid gap-6 mb-6 md:grid-cols-1">
+                        <div>
+                            <label for="userName" class="block mb-2 text-sm font-medium text-gray-900 ">User</label>
+                            <input type="text" id="userName" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="John" required 
+                            value={formValues.userName || ""}
+                            onChange={handeFormChange}
+                            name="userName"/>
+                        </div>
+                        <div class="mb-6">
+                            <label for="password" class="block mb-2 text-sm font-medium text-gray-900 ">Password</label>
+                            <input type="password" id="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="•••••••••" required 
+                            value={formValues.userPass || ""}
+                            onChange={handeFormChange}
+                            name="userPass"/>
+                        </div> 
+                        <div className='grid gap-6 mb-6 md:grid-cols-2'>
+                            <Link to={'/home'}><input type="submit" value="Iniciar Sesión" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"/></Link>
+                            <button onClick={onShowRegForm} className="text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">No tienes cuenta?</button>
+                        </div>
+                    </div>
+                </form>
+            </div>}
             {showRegisterForm &&
-            <>
-            <form onSubmit={handleSubmit} className="register-form">
-                <label>
-                    Email
-                    <input
-                        type="email"
-                        name='userMail'
-                        value={formRegValues.userMail || ""}
-                        onChange={handeFormRegChange}/>
-                </label>
-                <label>
-                    Usuario
-                    <input
-                        type="text"
+            <div className='flex flex-row justify-around mt-36'>
+            <img src={registerImg} alt='register'/>
+            <form onSubmit={handleSubmit} className="rounded-lg border-cyan-400 border-2 p-5">
+                <div class="grid gap-6 mb-6 md:grid-cols-1">
+                    <div>
+                        <label for="userName" class="block mb-2 text-sm font-medium text-gray-900 ">User</label>
+                        <input type="text" id="userName" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="John" required 
                         name='userName'
                         value={formRegValues.userName || ""}
                         onChange={handeFormRegChange}/>
-                </label>
-                <label>
-                    Contraseña
-                    <input
-                        type="password"
+                    </div>
+                    <div class="mb-6">
+                        <label for="userMail" class="block mb-2 text-sm font-medium text-gray-900">Email address</label>
+                        <input type="email" id="userMail" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " placeholder="john.doe@company.com" required
+                        name='userMail'
+                        value={formRegValues.userMail || ""}
+                        onChange={handeFormRegChange}/>
+                    </div> 
+                    <div class="mb-6">
+                        <label for="password" class="block mb-2 text-sm font-medium text-gray-900 ">Password</label>
+                        <input type="password" id="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="•••••••••" required 
                         name='userPass'
                         value={formRegValues.userPass || ""}
                         onChange={handeFormRegChange}/>
-                </label>
-                <Link to={'/home'}><input type="submit" value="Registrarse"/></Link>
+                    </div> 
+                    <div className='grid gap-6 mb-6 md:grid-cols-2'>
+                        <Link to={'/home'}><input type="submit" value="Registrarse" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"/></Link>
+                        <button onClick={onShowLoginForm} className="text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Ya tienes cuenta?</button>
+                    </div>
+                </div>
             </form>
-            <button onClick={onShowLoginForm}>Ya tienes cuenta?</button>
-            </>}
+        </div>}
         </div>
         <Outlet/>
         </>

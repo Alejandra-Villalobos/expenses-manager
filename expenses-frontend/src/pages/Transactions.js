@@ -7,8 +7,8 @@ function Transactions() {
   return (
     <>
     <NavBar/>
+    <div className='flex flex-row'>
     <SideMenu/>
-    <div>
       <h1>Transactions</h1>
       <button>Add expense</button>
       <button>Add income</button>

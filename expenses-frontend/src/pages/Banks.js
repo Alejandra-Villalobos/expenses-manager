@@ -6,8 +6,8 @@ const Banks = () => {
   return (
     <>
     <NavBar/>
+    <div className='flex flex-row'>
     <SideMenu/>
-    <div>
       <h1>Bank Accounts</h1>
       <button>Add bank</button>
       <section>

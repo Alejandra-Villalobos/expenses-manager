@@ -5,8 +5,8 @@ const Home = () => {
   return (
     <>
     <NavBar/>
+    <div className='flex flex-row'>
     <SideMenu/>
-    <div>
       <h1>Dashboard</h1>
       <section>
         <button>Add Expense</button>

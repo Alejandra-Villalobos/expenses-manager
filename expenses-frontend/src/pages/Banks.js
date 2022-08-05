@@ -1,13 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import SideMenu from '../components/SideMenu.js'
 import NavBar from '../components/NavBar.js'
 
 const Banks = () => {
+  const [showMenu, setShowMenu] = useState(true)
   return (
     <>
-    <NavBar/>
+    <NavBar setState={setShowMenu} state={showMenu}/>
     <div className='flex flex-row'>
-    <SideMenu/>
+    {showMenu && <SideMenu/>}
       <h1>Bank Accounts</h1>
       <button>Add bank</button>
       <section>

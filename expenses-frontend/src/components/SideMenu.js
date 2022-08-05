@@ -1,4 +1,3 @@
-import React from 'react'
 import { Outlet, Link } from "react-router-dom"
 import { AiOutlineDashboard } from 'react-icons/ai'
 import { BsBank } from 'react-icons/bs'

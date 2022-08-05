@@ -15,9 +15,6 @@ const Banks = () => {
           <h1>Bank Accounts</h1>
           <button><MdAddCircle size={25}/></button>
         </section>
-        <section className='flex justify-center mt-8'>
-          <h2>Banks</h2>
-        </section>
       </div>
     </div>
     </>

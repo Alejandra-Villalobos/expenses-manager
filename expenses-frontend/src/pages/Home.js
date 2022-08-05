@@ -9,14 +9,18 @@ const Home = () => {
     <NavBar setState={setShowMenu} state={showMenu}/>
     <div className='flex flex-row'>
     {showMenu && <SideMenu/>}
-      <h1>Dashboard</h1>
-      <section>
-        <button>Add Expense</button>
-        <button>Add Income</button>
-      </section>
-      <section>
-        <h2>Bank Accounts</h2>
-      </section>
+      <div className='w-full'>
+        <section className='mt-8'>
+          <h1 className='text-center'>Dashboard</h1>
+        </section>
+        <section className='justify-evenly flex mt-12'>
+          <button className='bg-green-500 border-2 rounded-lg border-white p-4 shadow-md'>Add Expense</button>
+          <button className='bg-blue-500 border-2 rounded-lg border-white p-4 shadow-md'>Add Income</button>
+        </section>
+        <section className='mt-12'>
+          <h2 className='text-center'>Bank Accounts</h2>
+        </section>
+      </div>
     </div>
     </>
   )

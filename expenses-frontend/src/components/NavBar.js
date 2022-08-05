@@ -1,10 +1,11 @@
 import React from 'react'
+import { FiMenu } from 'react-icons/fi'
 
 function NavBar({ setState, state }) {
   return (
-    <nav className='flex flex-row justify-between bg-green-600'>
-      <button className='ml-11' onClick={() => setState(!state)}>=</button>
-      <p>EM</p>
+    <nav className='flex flex-row justify-between bg-green-600 py-3'>
+      <button className='ml-11' onClick={() => setState(!state)}><FiMenu/></button>
+      <p>Expenses Manager</p>
       <div className='mr-11'>
         Profile
       </div>

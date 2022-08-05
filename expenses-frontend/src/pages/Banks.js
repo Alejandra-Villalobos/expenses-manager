@@ -9,11 +9,15 @@ const Banks = () => {
     <NavBar setState={setShowMenu} state={showMenu}/>
     <div className='flex flex-row'>
     {showMenu && <SideMenu/>}
-      <h1>Bank Accounts</h1>
-      <button>Add bank</button>
-      <section>
-        <h2>Banks</h2>
-      </section>
+      <div>
+        <section>
+          <h1>Bank Accounts</h1>
+          <button>Add bank</button>
+        </section>
+        <section>
+          <h2>Banks</h2>
+        </section>
+      </div>
     </div>
     </>
   )

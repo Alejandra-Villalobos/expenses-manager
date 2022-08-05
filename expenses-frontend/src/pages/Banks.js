@@ -12,7 +12,7 @@ const Banks = () => {
     {showMenu && <SideMenu/>}
       <div className='w-full'>
         <section className='flex flex-row justify-center items-center gap-x-5 mt-8'>
-          <h1>Bank Accounts</h1>
+          <h1 className='font-bold text-2xl'>Bank Accounts</h1>
           <button><MdAddCircle size={25}/></button>
         </section>
       </div>

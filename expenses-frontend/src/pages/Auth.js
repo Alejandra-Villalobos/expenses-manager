@@ -50,12 +50,13 @@ const Login = () => {
     }
 
     return (
-        <div className='bg-gradient-to-r from-green-400 via-cyan-900 to-blue-500 h-screen'>
-            <div>
+        <div className='bg-blue-900 h-screen'>
+            <div className='h-screen'>
+                <h1 className='text-center font-bold text-2xl pt-8'>Welcome to Expenses Manager!</h1>
                 {showLoginForm &&
-                <div className='flex flex-row justify-around pt-36'>
+                <div className='flex flex-row justify-around items-center h-5/6'>
                     <img src={loginImg} alt='login' className='w-80 h-80'/>
-                    <form onSubmit={handleSubmit} className="rounded-lg border-cyan-400 border-2 p-5">
+                    <form onSubmit={handleSubmit} className="bg-blue-500 rounded-lg border-blue-400 border-2 p-5">
                         <div class="grid gap-6 mb-6 md:grid-cols-1">
                             <div>
                                 <label for="userName" class="block mb-2 text-sm font-medium text-gray-900 ">User</label>
@@ -79,8 +80,8 @@ const Login = () => {
                     </form>
                 </div>}
                 {showRegisterForm &&
-                <div className='flex flex-row justify-around pt-32'>
-                <img src={registerImg} alt='register' className='w-80 h-80'/>
+                <div className='flex flex-row justify-around items-center h-5/6'>
+                <img src={loginImg} alt='register' className='w-80 h-80'/>
                 <form onSubmit={handleSubmit} className="rounded-lg border-cyan-400 border-2 p-5">
                     <div class="grid gap-6 mb-6 md:grid-cols-1">
                         <div>

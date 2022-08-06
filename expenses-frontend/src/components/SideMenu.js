@@ -8,7 +8,7 @@ const SideMenu = () => {
   return (
     <>
     <div className='flex flex-col w-24 h-screen bg-cyan-600'>
-      <Link to={'/home'} className={`flex flex-col p-5 border-2 border-cyan-700 hover:bg-cyan-700 ${path === '/home' ? 'bg-cyan-700' : ''}`}>
+      <Link to={'/home'} className={`flex flex-col p-5 border-b-2 border-cyan-700 border-l-2 border-r-2 hover:bg-cyan-700 ${path === '/home' ? 'bg-cyan-700' : ''}`}>
         <button className='flex flex-col items-center '>
           <AiOutlineDashboard/>
           Dashboard

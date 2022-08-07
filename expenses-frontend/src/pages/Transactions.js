@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import SideMenu from '../components/SideMenu.js'
 import NavBar from '../components/NavBar.js'
-
+import IncomesForm from '../components/IncomesForm.js'
 
 function Transactions() {
   const [showMenu, setShowMenu] = useState(true)
+  const [showIncomeForm, setShowIncomeForm] = useState(false)
+
   return (
     <>
     <NavBar setState={setShowMenu} state={showMenu}/>
@@ -14,7 +16,8 @@ function Transactions() {
       <h1 className='text-center mt-8 font-bold text-2xl'>Transactions</h1>
       <section className='flex flex-row justify-center items-center gap-x-5 mt-8'>
         <button className='bg-green-500 border-2 rounded-lg border-white p-4 shadow-md'>Add Expense</button>
-        <button className='bg-blue-500 border-2 rounded-lg border-white p-4 shadow-md'>Add Income</button>
+        <button onClick={() => setShowIncomeForm(true)} className='bg-blue-500 border-2 rounded-lg border-white p-4 shadow-md'>Add Income</button>
+        <IncomesForm trigger={showIncomeForm} setTrigger={setShowIncomeForm}/>
       </section>
         <section className='flex flex-row mt-8 gap-x-5 items-center'>
           <p className='ml-8 font-bold text-xl'>Sort by:</p>

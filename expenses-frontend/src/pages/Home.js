@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
 import SideMenu from '../components/SideMenu.js'
 import NavBar from '../components/NavBar.js'
+import IncomesForm from '../components/IncomesForm.js'
 
 const Home = () => {
   const [showMenu, setShowMenu] = useState(true)
+  const [showIncomeForm, setShowIncomeForm] = useState(false)
+
   return (
     <>
     <NavBar setState={setShowMenu} state={showMenu}/>
@@ -15,7 +18,8 @@ const Home = () => {
         </section>
         <section className='justify-evenly flex mt-12'>
           <button className='bg-green-500 border-2 rounded-lg border-white p-4 shadow-md'>Add Expense</button>
-          <button className='bg-blue-500 border-2 rounded-lg border-white p-4 shadow-md'>Add Income</button>
+          <button onClick={() => setShowIncomeForm(true)} className='bg-blue-500 border-2 rounded-lg border-white p-4 shadow-md'>Add Income</button>
+          <IncomesForm trigger={showIncomeForm} setTrigger={setShowIncomeForm}/>
         </section>
         <section className='mt-12'>
           <h2 className='text-center font-bold text-2xl'>Bank Accounts</h2>

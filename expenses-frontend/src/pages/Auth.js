@@ -56,15 +56,15 @@ const Login = () => {
                     <form onSubmit={handleSubmit} className="bg-white rounded-lg border-gray-300 shadow-md border-1 p-5">
                         <div className="grid gap-6 mb-6 md:grid-cols-1">
                             <div>
-                                <label for="userName" className="block mb-2 text-sm font-medium text-gray-900 ">User</label>
-                                <input type="text" id="userName" className="bg-white shadow-inner border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="John" required 
+                                <label className="block mb-2 text-sm font-medium text-gray-900 ">User</label>
+                                <input type="text" className="bg-white shadow-inner border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="John" required 
                                 value={formValues.userName || ""}
                                 onChange={handeFormChange}
                                 name="userName"/>
                             </div>
                             <div>
-                                <label for="password" className="block mb-2 text-sm font-medium text-gray-900 ">Password</label>
-                                <input type="password" id="password" className="bg-white shadow-inner border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="•••••••••" required 
+                                <label className="block mb-2 text-sm font-medium text-gray-900 ">Password</label>
+                                <input type="password" className="bg-white shadow-inner border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="•••••••••" required 
                                 value={formValues.userPass || ""}
                                 onChange={handeFormChange}
                                 name="userPass"/>
@@ -82,22 +82,22 @@ const Login = () => {
                 <form onSubmit={handleSubmit} className="bg-white rounded-lg border-gray-300 shadow-md border-1 p-5">
                     <div className="grid gap-6 mb-6 md:grid-cols-1">
                         <div>
-                            <label for="userName" className="block mb-2 text-sm font-medium text-gray-900 ">User</label>
-                            <input type="text" id="userName" className="bg-white shadow-inner border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="John" required 
+                            <label className="block mb-2 text-sm font-medium text-gray-900 ">User</label>
+                            <input type="text" className="bg-white shadow-inner border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="John" required 
                             name='userName'
                             value={formRegValues.userName || ""}
                             onChange={handeFormRegChange}/>
                         </div>
                         <div>
-                            <label for="userMail" className="block mb-2 text-sm font-medium text-gray-900">Email address</label>
-                            <input type="email" id="userMail" className="bg-white shadow-inner border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="john.doe@company.com" required
+                            <label className="block mb-2 text-sm font-medium text-gray-900">Email address</label>
+                            <input type="email" className="bg-white shadow-inner border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="john.doe@company.com" required
                             name='userMail'
                             value={formRegValues.userMail || ""}
                             onChange={handeFormRegChange}/>
                         </div> 
                         <div>
-                            <label for="password" className="block mb-2 text-sm font-medium text-gray-900 ">Password</label>
-                            <input type="password" id="password" className="bg-white shadow-inner border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="•••••••••" required 
+                            <label className="block mb-2 text-sm font-medium text-gray-900 ">Password</label>
+                            <input type="password" className="bg-white shadow-inner border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="•••••••••" required 
                             name='userPass'
                             value={formRegValues.userPass || ""}
                             onChange={handeFormRegChange}/>

@@ -16,9 +16,8 @@ function Popup(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert(`Bank data: ${newBank.bankName} ${newBank.userName} ${newBank.amount}`)
-    setNewBank([])
-    props.setTrigger(false)
+        setNewBank([])
+        props.setTrigger(false)
   };
 
   return (props.trigger) ? (

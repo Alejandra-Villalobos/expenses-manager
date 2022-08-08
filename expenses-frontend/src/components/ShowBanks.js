@@ -1,7 +1,6 @@
 import '../App.css'
 import React, { useState, useEffect } from 'react'
 
-
 function ShowBanks() {
     const [banks, setBanks] = useState([]);
 
@@ -13,7 +12,7 @@ function ShowBanks() {
       setBanks(data)
     }
     getBanks()
-  }, [banks])
+  }, [])
   return (
     <div  className='flex flex-row gap-3'>
           {banks.map((bank)=>

@@ -3,6 +3,7 @@ import SideMenu from '../components/SideMenu.js'
 import NavBar from '../components/NavBar.js'
 import IncomesForm from '../components/IncomesForm.js'
 import OutcomesForm from '../components/OutcomesForm.js'
+import ShowTransactions from '../components/ShowTransactions.js'
 
 function Transactions() {
   const [showMenu, setShowMenu] = useState(true)
@@ -12,7 +13,7 @@ function Transactions() {
   return (
     <>
     <NavBar setState={setShowMenu} state={showMenu}/>
-    <div className='flex flex-row'>
+    <div className='flex flex-row bg-emerald-100'>
     {showMenu && <SideMenu/>}
     <div className='w-full'>
       <h1 className='text-center mt-8 font-bold text-2xl'>Transactions</h1>
@@ -25,9 +26,10 @@ function Transactions() {
         <section className='flex flex-row mt-8 gap-x-5 items-center'>
           <p className='ml-8 font-bold text-xl'>Sort by:</p>
           <button className='bg-red-500 border-2 rounded-lg border-white p-4 shadow-md'>Date</button>
-          <button className='bg-orange-500 border-2 rounded-lg border-white p-4 shadow-md'>Category</button>
-          <button className='bg-yellow-500 border-2 rounded-lg border-white p-4 shadow-md'>Bank</button>
+          <button className='bg-orange-400 border-2 rounded-lg border-white p-4 shadow-md'>Category</button>
+          <button className='bg-yellow-300 border-2 rounded-lg border-white p-4 shadow-md'>Bank</button>
         </section>
+        <ShowTransactions/>
       </div>
     </div>
     </>

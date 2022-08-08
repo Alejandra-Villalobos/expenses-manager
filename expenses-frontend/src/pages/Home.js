@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import SideMenu from '../components/SideMenu.js'
 import NavBar from '../components/NavBar.js'
 import IncomesForm from '../components/IncomesForm.js'

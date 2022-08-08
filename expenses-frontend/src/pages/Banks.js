@@ -3,6 +3,7 @@ import SideMenu from '../components/SideMenu.js'
 import NavBar from '../components/NavBar.js'
 import BankForm from '../components/BankForm.js'
 import { MdAddCircle } from 'react-icons/md'
+import ShowBanks from '../components/ShowBanks.js'
 
 const Banks = () => {
   const [showMenu, setShowMenu] = useState(true)
@@ -18,6 +19,7 @@ const Banks = () => {
           <button onClick={()=>setShowBankForm(true)}><MdAddCircle size={25}/></button>
           <BankForm trigger={showBankForm} setTrigger={setShowBankForm}/>
         </section>
+        <ShowBanks/>
       </div>
     </div>
     </>

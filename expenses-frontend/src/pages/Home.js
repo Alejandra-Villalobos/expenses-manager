@@ -1,18 +1,19 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import SideMenu from '../components/SideMenu.js'
 import NavBar from '../components/NavBar.js'
 import IncomesForm from '../components/IncomesForm.js'
 import OutcomesForm from '../components/OutcomesForm.js'
+import ShowBanks from '../components/ShowBanks.js'
 
 const Home = () => {
-  const [showMenu, setShowMenu] = useState(true)
-  const [showIncomeForm, setShowIncomeForm] = useState(false)
-  const [showOutcomeForm, setShowOutcomeForm] = useState(false)
+  const [showMenu, setShowMenu] = useState(true);
+  const [showIncomeForm, setShowIncomeForm] = useState(false);
+  const [showOutcomeForm, setShowOutcomeForm] = useState(false);
 
   return (
     <>
     <NavBar setState={setShowMenu} state={showMenu}/>
-    <div className='flex flex-row'>
+    <div className='flex flex-row bg-emerald-100'>
     {showMenu && <SideMenu/>}
       <div className='w-full'>
         <section className='mt-8'>
@@ -26,6 +27,7 @@ const Home = () => {
         </section>
         <section className='mt-12'>
           <h2 className='text-center font-bold text-2xl'>Bank Accounts</h2>
+          <ShowBanks/>
         </section>
       </div>
     </div>

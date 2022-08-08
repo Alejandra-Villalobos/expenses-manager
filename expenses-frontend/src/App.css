@@ -1,3 +1,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.bank-divs:nth-child(2n){
+    background: #544179;
+    border-color:#3800a7;
+}
+
+.bank-divs:nth-child(2n+1){
+    background: #6166B3;
+    border-color:#5e2fbb;
+}
+
+.bank-divs:nth-child(2n+2){
+    background: #32C1CD;
+    border-color:#00a4b3;
+}
+
+.bank-divs:nth-child(2n+3){
+    background: #17D7A0;
+    border-color: #00a073;
+}

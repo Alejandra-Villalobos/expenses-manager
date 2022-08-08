@@ -1,0 +1,232 @@
+[
+    {
+        "id": 1,
+        "user": "John Doe",
+        "bankName": "Banco 123",
+        "amount": 300.50,
+        "incomes": [
+            {
+                "id": 1,
+                "amount": 20.00,
+                "date": "27-5-2022",
+                "category": "Work",
+                "description": null
+            },
+            {
+                "id": 2,
+                "amount": 520.00,
+                "date": "29-6-2022",
+                "category": "Gift",
+                "description": "Birthday gift from Paula"
+            },
+            {
+                "id": 3,
+                "amount": 50.25,
+                "date": "29-7-2022",
+                "category": "Food",
+                "description": "Dinner with Anne"
+            }
+
+        ],
+        "outcomes": [
+            {
+                "id": 1,
+                "amount": 10.00,
+                "to": "Banco Central - John Doe",
+                "date": "27-5-2022",
+                "category": "Travel",
+                "description": null
+            },
+            {
+                "id": 2,
+                "amount": 68.80,
+                "to": "BAC - Alex Doe",
+                "date": "29-6-2022",
+                "category": "Work",
+                "description": "Payment to Joe"
+            },
+            {
+                "id": 3,
+                "amount": 5.50,
+                "to": "Davivienda - John A. Doe",
+                "date": "29-7-2022",
+                "category": "Food",
+                "description": "Friday party"
+            }
+
+        ]
+    },
+
+    {
+        "id": 2,
+        "user": "Jane Doe",
+        "bankName": "BAC",
+        "amount": 3000.49,
+        "incomes": [
+            {
+                "id": 1,
+                "amount": 30.00,
+                "date": "27-5-2022",
+                "category": "Gift",
+                "description": null
+            },
+            {
+                "id": 2,
+                "amount": 3.00,
+                "date": "2-8-2022",
+                "category": "Other",
+                "description": "Birthday gift from John"
+            },
+            {
+                "id": 3,
+                "amount": 52.25,
+                "date": "29-7-2022",
+                "category": "Food",
+                "description": "Dinner with Jane"
+            }
+
+        ],
+        "outcomes": [
+            {
+                "id": 1,
+                "amount": 3000.00,
+                "to": "Banco Central - Jane Doe",
+                "date": "27-5-2022",
+                "category": "Travel",
+                "description": "Travel to Spain"
+            },
+            {
+                "id": 2,
+                "amount": 638.80,
+                "to": null,
+                "date": "29-6-2022",
+                "category": "Work",
+                "description": "Payment to John"
+            },
+            {
+                "id": 3,
+                "amount": 5.50,
+                "to": "Davivienda - Jane A. Doe",
+                "date": "29-7-2022",
+                "category": "Other",
+                "description": "Mary's birthday"
+            }
+
+        ]
+    },
+
+    {
+        "id": 3,
+        "user": "Alex Doe",
+        "bankName": "Banco Central",
+        "amount": 100000.50,
+        "incomes": [
+            {
+                "id": 1,
+                "amount": 900.00,
+                "date": "22-5-2022",
+                "category": "Work",
+                "description": "Boss payment"
+            },
+            {
+                "id": 2,
+                "amount": 520.00,
+                "date": "29-6-2022",
+                "category": "Selling",
+                "description": "Garage selling"
+            },
+            {
+                "id": 3,
+                "amount": 50.25,
+                "date": "29-7-2022",
+                "category": "Food",
+                "description": "Dinner with Anne and John"
+            }
+
+        ],
+        "outcomes": [
+            {
+                "id": 1,
+                "amount": 12000.00,
+                "to": null,
+                "date": "27-5-2022",
+                "category": "Other",
+                "description": "New car"
+            },
+            {
+                "id": 2,
+                "amount": 79.80,
+                "to": null,
+                "date": "29-6-2022",
+                "category": "Work",
+                "description": "Payment to Lisa"
+            },
+            {
+                "id": 3,
+                "amount": 2.20,
+                "to": "Davivienda - John A. Doe",
+                "date": "30-7-2022",
+                "category": "Food",
+                "description": "Pizza"
+            }
+
+        ]
+    },
+    {
+        "id": 4,
+        "user": "Juan Perez",
+        "bankName": "Banco Americano",
+        "amount": 20000.50,
+        "incomes": [
+            {
+                "id": 1,
+                "amount": 320.00,
+                "date": "22-5-2022",
+                "category": "Work",
+                "description": null
+            },
+            {
+                "id": 2,
+                "amount": 560.00,
+                "date": "29-6-2022",
+                "category": "Selling",
+                "description": "Food selling"
+            },
+            {
+                "id": 3,
+                "amount": 50.25,
+                "date": "29-7-2022",
+                "category": "Food",
+                "description": "Dinner with Anne and John"
+            }
+
+        ],
+        "outcomes": [
+            {
+                "id": 1,
+                "amount": 130.00,
+                "to": null,
+                "date": "27-5-2022",
+                "category": "Other",
+                "description": "Gas"
+            },
+            {
+                "id": 2,
+                "amount": 79.80,
+                "to": null,
+                "date": "29-6-2022",
+                "category": "Gift",
+                "description": "Gift to Lisa"
+            },
+            {
+                "id": 3,
+                "amount": 2.20,
+                "to": "Davivienda - John Doe",
+                "date": "30-7-2022",
+                "category": "Food",
+                "description": "Lasagna"
+            }
+
+        ]
+    }
+]

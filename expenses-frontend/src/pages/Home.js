@@ -14,7 +14,7 @@ const Home = () => {
   return (
     <>
     <NavBar setState={setShowMenu} state={showMenu}/>
-    <div className='flex flex-row bg-emerald-100 mt-14'>
+    <div className='flex flex-row bg-emerald-100 mt-14 h-screen'>
     {showMenu && <SideMenu/>}
       <div className='w-full'>
         <section className='mt-8'>

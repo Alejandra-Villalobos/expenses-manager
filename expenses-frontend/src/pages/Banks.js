@@ -11,7 +11,7 @@ const Banks = () => {
   return (
     <>
     <NavBar setState={setShowMenu} state={showMenu}/>
-    <div className='flex flex-row bg-emerald-100'>
+    <div className='flex flex-row bg-emerald-100 mt-14'>
     {showMenu && <SideMenu/>}
       <div className='w-full'>
         <section className='flex flex-row justify-center items-center gap-x-5 mt-8'>

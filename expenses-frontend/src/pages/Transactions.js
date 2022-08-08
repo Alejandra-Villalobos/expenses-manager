@@ -13,7 +13,7 @@ function Transactions() {
   return (
     <>
     <NavBar setState={setShowMenu} state={showMenu}/>
-    <div className='flex flex-row bg-emerald-100'>
+    <div className='flex flex-row bg-emerald-100 mt-14'>
     {showMenu && <SideMenu/>}
     <div className='w-full'>
       <h1 className='text-center mt-8 font-bold text-2xl'>Transactions</h1>

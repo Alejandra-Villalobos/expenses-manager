@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import SideMenu from '../components/SideMenu.js'
 import NavBar from '../components/NavBar.js'
-import BankForm from '../components/BankForm.js'
+import BankForm from '../components/forms/BankForm'
 import { MdAddCircle } from 'react-icons/md'
 import ShowBanks from '../components/ShowBanks.js'
 

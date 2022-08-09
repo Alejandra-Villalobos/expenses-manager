@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import SideMenu from '../components/SideMenu.js'
 import NavBar from '../components/NavBar.js'
-import IncomesForm from '../components/IncomesForm.js'
-import OutcomesForm from '../components/OutcomesForm.js'
+import IncomesForm from '../components/forms/IncomesForm.js'
+import OutcomesForm from '../components/forms/OutcomesForm.js'
 import ShowTransactions from '../components/ShowTransactions.js'
 
 function Transactions() {

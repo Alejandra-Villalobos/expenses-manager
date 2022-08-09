@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import SideMenu from '../components/SideMenu.js'
 import NavBar from '../components/NavBar.js'
-import IncomesForm from '../components/IncomesForm.js'
-import OutcomesForm from '../components/OutcomesForm.js'
+import IncomesForm from '../components/forms/IncomesForm'
+import OutcomesForm from '../components/forms/OutcomesForm'
 import ShowBanks from '../components/ShowBanks.js'
 import ShowTransactions from '../components/ShowTransactions.js'
+import BankChart from '../components/BankChart.js'
 
 const Home = () => {
   const [showMenu, setShowMenu] = useState(true);
@@ -19,6 +20,7 @@ const Home = () => {
       <div className='w-full'>
         <section className='mt-8'>
           <h1 className='text-center font-bold text-2xl'>Dashboard</h1>
+          <BankChart/>
         </section>
         <section className='justify-center gap-3 flex mt-12'>
           <button onClick={() => setShowOutcomeForm(true)} className='bg-green-500 border-2 rounded-lg border-white p-4 shadow-md'>Add Expense</button>

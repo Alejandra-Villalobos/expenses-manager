@@ -41,6 +41,7 @@ function CategoryChart() {
         legend: 'bottom',
         width: 500,
         height: 400,
+        colors: ['#0b65db', '#db0b43']
       };
 
   return (

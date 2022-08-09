@@ -8,11 +8,14 @@ import ShowBanks from '../components/ShowBanks.js'
 const Banks = () => {
   const [showMenu, setShowMenu] = useState(true)
   const [showBankForm, setShowBankForm] = useState(false)
+
+  const viewHeight = window.outerHeight;
+
   return (
     <>
     <NavBar setState={setShowMenu} state={showMenu}/>
     <div className='flex flex-row bg-emerald-100 mt-14 h-screen'>
-    {showMenu && <SideMenu/>}
+    {showMenu && <SideMenu style={{ height: viewHeight }}/>}
       <div className='w-full'>
         <section className='flex flex-row justify-center items-center gap-x-5 mt-8'>
           <h1 className='font-bold text-2xl'>Bank Accounts</h1>

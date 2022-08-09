@@ -25,7 +25,7 @@ function BankChart() {
     legend: 'bottom',
     width: 500,
     height: 400,
-    is3D: true
+    is3D: true,
   };
   
   return (
@@ -37,6 +37,7 @@ function BankChart() {
       options={options}
       width={"100%"}
       height={"100%"}
+      
     />
     </div>
   )

@@ -8,7 +8,6 @@ function ShowBanks() {
     async function getBanks(){
       const banksData = await fetch('banks.json', {method: "GET"})
       const data = await banksData.json()
-      console.log(data)
       setBanks(data)
     }
     getBanks()

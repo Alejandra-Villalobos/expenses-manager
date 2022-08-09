@@ -9,7 +9,6 @@ function BankChart() {
     async function getBanks(){
       const banksData = await fetch('banks.json', {method: "GET"})
       const data = await banksData.json()
-      console.log(data)
       setBanks(data)
     }
     getBanks()
@@ -26,7 +25,7 @@ function BankChart() {
       data={banks.map((bank, i) => {return {title: bank.bankName, value: bank.amount, color: colors[i]}})}
     />
     <div className='flex flex-row w-max gap-3'>
-      {banks.map((bank, i)=> {return <div className='flex flex-row items-center'><GoPrimitiveDot color={colors[i]}/><p>{bank.bankName}</p></div>})}
+      {banks.map((bank, i)=> {return <div key={i} className='flex flex-row items-center'><GoPrimitiveDot color={colors[i]}/><p>{bank.bankName}</p></div>})}
     </div>
     </div>
   )

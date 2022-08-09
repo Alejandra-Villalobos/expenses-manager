@@ -33,26 +33,23 @@ function CategoryChart() {
     }, [])
 
     const options = {
-        title: "Incomes vs Outcomes",
         chartArea: { width: "50%" },
         hAxis: {
-          title: "Total Population",
           minValue: 0,
         },
-        vAxis: {
-          title: "Category",
-        },
+        backgroundColor: 'transparent'
       };
 
   return (
-    <div className='flex flex-col content-center w-max items-center'>
-    <Chart
-      chartType="BarChart"
-      width="100%"
-      height="400px"
-      data={chartData}
-      options={options}
-    />
+    <div className='flex flex-col content-center w-full items-center'>
+      <h1 className='text-center font-bold text-2xl'>Categories: incomes vs outcomes</h1>
+      <Chart
+        chartType="BarChart"
+        width="100%"
+        height="100%"
+        data={chartData}
+        options={options}
+      />
     </div>
   );
 }

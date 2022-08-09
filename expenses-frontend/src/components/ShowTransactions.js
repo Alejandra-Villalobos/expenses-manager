@@ -31,7 +31,7 @@ function ShowTransactions() {
     transactions = transactions.sort((a,b)=> a.date < b.date ? 1 : -1)
     return (
       <>
-      <div className='flex flex-row gap-3 justify-center'>
+      <div className='flex flex-row gap-3 justify-center flex-wrap'>
             {transactions.map((transaction, i)=>
               <div key={i} className={`mt-5 ml-2 rounded-md border-2 shadow-md ${transaction.hasOwnProperty('to') ? prop.out['bg-border'] : prop.in['bg-border'] }`}>
                 <p className={`text-white font-bold font-fira text-cente px-12 ${transaction.hasOwnProperty('to') ? prop.out['p-bg'] : prop.in['p-bg'] }`}>{transaction.hasOwnProperty('to') ? prop.out.type : prop.in.type }</p>

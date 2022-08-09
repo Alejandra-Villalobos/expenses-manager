@@ -25,6 +25,13 @@
                 "date": "29-7-2022",
                 "category": "Food",
                 "description": "Dinner with Anne"
+            },
+            {
+                "id": 4,
+                "amount": 52.25,
+                "date": "30-7-2022",
+                "category": "Food",
+                "description": "Dinner with Tom"
             }
 
         ],

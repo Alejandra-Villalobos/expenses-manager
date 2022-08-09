@@ -16,11 +16,11 @@ const Home = () => {
   return (
     <>
     <NavBar setState={setShowMenu} state={showMenu}/>
-    <div className='flex flex-row bg-emerald-100 mt-14 h-screen'>
+    <div className='flex flex-row bg-emerald-100 mt-14 h-full w-full overflow-x-hidden'>
     {showMenu && <SideMenu/>}
-      <div className='w-full'>
-      <h1 className='text-center font-bold text-2xl'>Dashboard</h1>
-        <section className='mt-8 flex flex-row'>
+      <div className='w-full pl-16 pr-8 mt-8'>
+      <h1 className='text-center font-bold text-2xl w-full'>Dashboard</h1>
+        <section className='mt-8 flex flex-row justify-between '>
           <BankChart/>
           <CategoryChart/>
         </section>
@@ -34,9 +34,9 @@ const Home = () => {
           <h2 className='text-center font-bold text-2xl'>Bank Accounts</h2>
           <ShowBanks/>
         </section>
-        <section className='mt-12'>
+        <section className='mt-12 mb-8'>
           <h2 className='text-center font-bold text-2xl'>Transactions</h2>
-          <ShowTransactions/>
+          <ShowTransactions className='flex flex-wrap'/>
         </section>
       </div>
     </div>

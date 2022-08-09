@@ -13,7 +13,7 @@ function ShowBanks() {
     getBanks()
   }, [])
   return (
-    <div  className='flex flex-row gap-3 justify-center'>
+    <div  className='flex flex-row gap-3 justify-center flex-wrap'>
           {banks.map((bank)=>
             <div key={bank.id} className='bank-divs mt-5 p-5 ml-2 rounded-md  border-2 shadow-md'>
               <p className='font-fira font-bold text-lg text-center'>{bank.bankName}</p>

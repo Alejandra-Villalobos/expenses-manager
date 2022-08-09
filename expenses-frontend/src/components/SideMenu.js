@@ -7,7 +7,7 @@ const SideMenu = () => {
   const path = window.location.pathname
   return (
     <>
-    <div className='flex flex-col w-24 h-screen bg-cyan-600'>
+    <div className='flex flex-col w-24 bg-cyan-600 h-screen'>
       <Link to={'/home'} className={`flex flex-col p-5 border-b-2 border-cyan-700 border-l-2 border-r-2 hover:bg-cyan-700 ${path === '/home' ? 'bg-cyan-700' : ''}`}>
         <button className='flex flex-col items-center '>
           <AiOutlineDashboard/>

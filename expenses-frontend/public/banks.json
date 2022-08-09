@@ -3,10 +3,12 @@
         "id": 1,
         "user": "John Doe",
         "bankName": "Banco 123",
+        "currency": "euro",
         "amount": 1200.50,
         "incomes": [
             {
                 "id": 1,
+                "currency": "euro",
                 "amount": 20.00,
                 "date": "27-5-2022",
                 "category": "Work",
@@ -14,6 +16,7 @@
             },
             {
                 "id": 2,
+                "currency": "euro",
                 "amount": 520.00,
                 "date": "29-6-2022",
                 "category": "Gift",
@@ -21,6 +24,7 @@
             },
             {
                 "id": 3,
+                "currency": "euro",
                 "amount": 50.25,
                 "date": "29-7-2022",
                 "category": "Food",
@@ -28,6 +32,7 @@
             },
             {
                 "id": 4,
+                "currency": "euro",
                 "amount": 52.25,
                 "date": "30-7-2022",
                 "category": "Food",
@@ -38,6 +43,7 @@
         "outcomes": [
             {
                 "id": 1,
+                "currency": "euro",
                 "amount": 10.00,
                 "to": "Banco Central - John Doe",
                 "date": "27-5-2022",
@@ -46,6 +52,7 @@
             },
             {
                 "id": 2,
+                "currency": "euro",
                 "amount": 68.80,
                 "to": "BAC - Alex Doe",
                 "date": "29-6-2022",
@@ -54,6 +61,7 @@
             },
             {
                 "id": 3,
+                "currency": "euro",
                 "amount": 5.50,
                 "to": "Davivienda - John A. Doe",
                 "date": "29-7-2022",
@@ -68,10 +76,12 @@
         "id": 2,
         "user": "Jane Doe",
         "bankName": "BAC",
+        "currency": "dollar",
         "amount": 3000.49,
         "incomes": [
             {
                 "id": 1,
+                "currency": "dollar",
                 "amount": 30.00,
                 "date": "27-5-2022",
                 "category": "Gift",
@@ -79,6 +89,7 @@
             },
             {
                 "id": 2,
+                "currency": "dollar",
                 "amount": 3.00,
                 "date": "2-8-2022",
                 "category": "Other",
@@ -86,6 +97,7 @@
             },
             {
                 "id": 3,
+                "currency": "dollar",
                 "amount": 52.25,
                 "date": "29-7-2022",
                 "category": "Food",
@@ -96,6 +108,7 @@
         "outcomes": [
             {
                 "id": 1,
+                "currency": "dollar",
                 "amount": 3000.00,
                 "to": "Banco Central - Jane Doe",
                 "date": "27-5-2022",
@@ -104,6 +117,7 @@
             },
             {
                 "id": 2,
+                "currency": "dollar",
                 "amount": 638.80,
                 "to": null,
                 "date": "29-6-2022",
@@ -112,6 +126,7 @@
             },
             {
                 "id": 3,
+                "currency": "dollar",
                 "amount": 5.50,
                 "to": "Davivienda - Jane A. Doe",
                 "date": "29-7-2022",
@@ -126,10 +141,12 @@
         "id": 3,
         "user": "Alex Doe",
         "bankName": "Banco Central",
+        "currency": "bitcoin",
         "amount": 10000.50,
         "incomes": [
             {
                 "id": 1,
+                "currency": "bitcoin",
                 "amount": 900.00,
                 "date": "22-5-2022",
                 "category": "Work",
@@ -137,6 +154,7 @@
             },
             {
                 "id": 2,
+                "currency": "bitcoin",
                 "amount": 520.00,
                 "date": "29-6-2022",
                 "category": "Selling",
@@ -144,6 +162,7 @@
             },
             {
                 "id": 3,
+                "currency": "bitcoin",
                 "amount": 50.25,
                 "date": "29-7-2022",
                 "category": "Food",
@@ -154,6 +173,7 @@
         "outcomes": [
             {
                 "id": 1,
+                "currency": "bitcoin",
                 "amount": 12000.00,
                 "to": null,
                 "date": "27-5-2022",
@@ -162,6 +182,7 @@
             },
             {
                 "id": 2,
+                "currency": "bitcoin",
                 "amount": 79.80,
                 "to": null,
                 "date": "29-6-2022",
@@ -170,6 +191,7 @@
             },
             {
                 "id": 3,
+                "currency": "bitcoin",
                 "amount": 2.20,
                 "to": "Davivienda - John A. Doe",
                 "date": "30-7-2022",
@@ -183,10 +205,12 @@
         "id": 4,
         "user": "Juan Perez",
         "bankName": "Banco Americano",
+        "currency": "dollar",
         "amount": 20000.50,
         "incomes": [
             {
                 "id": 1,
+                "currency": "dollar",
                 "amount": 320.00,
                 "date": "22-5-2022",
                 "category": "Work",
@@ -194,6 +218,7 @@
             },
             {
                 "id": 2,
+                "currency": "dollar",
                 "amount": 560.00,
                 "date": "29-6-2022",
                 "category": "Selling",
@@ -201,6 +226,7 @@
             },
             {
                 "id": 3,
+                "currency": "dollar",
                 "amount": 50.25,
                 "date": "29-7-2022",
                 "category": "Food",
@@ -211,6 +237,7 @@
         "outcomes": [
             {
                 "id": 1,
+                "currency": "dollar",
                 "amount": 130.00,
                 "to": null,
                 "date": "27-5-2022",
@@ -219,6 +246,7 @@
             },
             {
                 "id": 2,
+                "currency": "dollar",
                 "amount": 79.80,
                 "to": null,
                 "date": "29-6-2022",
@@ -227,6 +255,7 @@
             },
             {
                 "id": 3,
+                "currency": "dollar",
                 "amount": 2.20,
                 "to": "Davivienda - John Doe",
                 "date": "30-7-2022",

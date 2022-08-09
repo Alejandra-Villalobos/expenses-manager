@@ -39,13 +39,25 @@ function Popup(props) {
                 onChange={handeFormChange}
                 name='userName'
                 placeholder="John Doe" required/>
-              <label>Amount</label>
-              <input className=' mb-6 shadow-inner border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5'
+              <label>Currency and Amount</label>
+              <div className='flex flex-row'>
+              <select className='mr-3 mb-6 shadow-inner border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-max p-2.5'
+                    value={newBank.currency || ""}
+                    onChange={handeFormChange}
+                    name='currency'
+                    required>
+                        <option value="" disabled selected>Currency</option>
+                        <option value="dollar">$ (Dollar)</option>
+                        <option value="euro">€ (Euro)</option>
+                        <option value="bitcoin">₿ (Bitcoin)</option>
+                  </select>
+              <input className=' mb-6 shadow-inner border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-max p-2.5'
                 type="number"
                 value={newBank.amount || ""}
                 onChange={handeFormChange}
                 name='amount'
                 placeholder="3000.00" required/>
+              </div>
               <div className='flex flex-row justify-between'>
                 <button className='flex items-center shadow-md bg-red-500 rounded-lg px-5 py-2' onClick={() => props.setTrigger(false)}>Cancel</button>
                 <input className='flex items-center shadow-md bg-green-500 rounded-lg px-5 py-2' type='submit' value='Add'/>

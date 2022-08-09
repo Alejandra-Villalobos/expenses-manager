@@ -1,8 +1,14 @@
 import '../App.css'
 import React, { useState, useEffect } from 'react'
+import { BsCurrencyBitcoin, BsCurrencyDollar, BsCurrencyEuro } from 'react-icons/bs'
 
 function ShowBanks() {
     const [banks, setBanks] = useState([]);
+    const setCur = (curr) => {
+      if(curr === 'dollar') return <BsCurrencyDollar/>
+      else if (curr === 'euro') return <BsCurrencyEuro/>
+      else if (curr === 'bitcoin') return <BsCurrencyBitcoin/>
+    }
 
   useEffect(()=>{
     async function getBanks(){
@@ -19,7 +25,7 @@ function ShowBanks() {
               <p className='font-fira font-bold text-lg text-center'>{bank.bankName}</p>
               <hr className='bg-gray-500 rounded-lg'/>
               <p className='font-fira text-center'>{bank.user}</p>
-              <p className='font-fira text-center'>Amount: {bank.amount}</p>
+              <p className='font-fira text-center flex items-center'>Amount: {setCur(bank.currency)} {bank.amount}</p>
             </div>
           )}
     </div>

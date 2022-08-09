@@ -1,9 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import { ImMinus } from 'react-icons/im'
 import { BiPlusMedical } from 'react-icons/bi'
+import { BsCurrencyBitcoin, BsCurrencyDollar, BsCurrencyEuro } from 'react-icons/bs'
+
 
 function ShowTransactions() {
     var [transactions, setTransactions] = useState([])
+    const setCur = (curr) => {
+      if(curr === 'dollar') return <BsCurrencyDollar/>
+      else if (curr === 'euro') return <BsCurrencyEuro/>
+      else if (curr === 'bitcoin') return <BsCurrencyBitcoin/>
+    }
     const prop = {
       out: {
         "bg-border": 'border-red-600 bg-red-300',
@@ -36,7 +43,7 @@ function ShowTransactions() {
               <div key={i} className={`mt-5 ml-2 rounded-md border-2 shadow-md ${transaction.hasOwnProperty('to') ? prop.out['bg-border'] : prop.in['bg-border'] }`}>
                 <p className={`text-white font-bold font-fira text-cente px-12 ${transaction.hasOwnProperty('to') ? prop.out['p-bg'] : prop.in['p-bg'] }`}>{transaction.hasOwnProperty('to') ? prop.out.type : prop.in.type }</p>
                 <p className='font-fira font-bold text-lg text-center flex items-center justify-center gap-1'>
-                {transaction.hasOwnProperty('to') ? prop.out.symbol : prop.in.symbol}{transaction.amount}</p>
+                {transaction.hasOwnProperty('to') ? prop.out.symbol : prop.in.symbol} {setCur(transaction.currency)} {transaction.amount}</p>
                 <p className='font-fira text-center'>{transaction.category}</p>
                 <p className='font-fira text-center'>{transaction.date}</p>
               </div>

@@ -20,7 +20,7 @@ const Home = () => {
     {showMenu && <SideMenu/>}
       <div className='w-full pl-16 pr-8 mt-8'>
       <h1 className='text-center font-bold text-2xl w-full'>Dashboard</h1>
-        <section className='mt-8 flex flex-row justify-between '>
+        <section className='mt-8 flex flex-row justify-between'>
           <BankChart/>
           <CategoryChart/>
         </section>

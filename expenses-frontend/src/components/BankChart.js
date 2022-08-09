@@ -1,32 +1,43 @@
 import React, { useEffect, useState } from 'react'
-import { PieChart } from 'react-minimal-pie-chart';
-import { GoPrimitiveDot } from 'react-icons/go'
+import { Chart } from "react-google-charts";
+
 
 function BankChart() {
-  const [banks, setBanks] = useState([]);
-  const colors = ['#eb3461', '#eb6e34', '#34eb92', '#3471eb', '#dbeb34', '#d234eb', '#3498eb', '#eb3d34']
+  const [chartData, setChartData] = useState ()
   useEffect(()=>{
     async function getBanks(){
       const banksData = await fetch('banks.json', {method: "GET"})
       const data = await banksData.json()
-      setBanks(data)
+      const dataChart = [
+        [["Bank", "Amount"]],
+        data.map((bank)=> [bank.bankName, bank.amount])
+      ].flat();
+      setChartData(dataChart)
     }
     getBanks()
+    
+    
   }, [])
+
+  const options = {
+    chartArea: { width: "100%" },
+    backgroundColor: 'transparent',
+    legend: 'bottom',
+    width: 500,
+    height: 400,
+    is3D: true
+  };
+  
   return (
-    <div className='flex flex-col content-center w-max items-center'>
-      <h1 className='text-center font-bold text-2xl'>Bank amount distribution</h1>
-    <PieChart className='w-72 h-72' label={(data) => `${Math.round(data.dataEntry.percentage)}%`} labelPosition={75}
-      labelStyle={{
-        fontSize: "6px",
-        fontColor: "FFFFFA",
-        fontWeight: "400",
-      }}
-      data={banks.map((bank, i) => {return {title: bank.bankName, value: bank.amount, color: colors[i]}})}
+    <div className='flex flex-col content-center w-full items-center'>
+      <h1 className='text-center font-bold text-2xl -mb-8'>Bank amount distribution</h1>
+      <Chart
+      chartType="PieChart"
+      data={chartData}
+      options={options}
+      width={"100%"}
+      height={"100%"}
     />
-    <div className='flex flex-row w-max gap-3'>
-      {banks.map((bank, i)=> {return <div key={i} className='flex flex-row items-center'><GoPrimitiveDot color={colors[i]}/><p>{bank.bankName}</p></div>})}
-    </div>
     </div>
   )
 }

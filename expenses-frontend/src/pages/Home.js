@@ -5,8 +5,8 @@ import IncomesForm from '../components/forms/IncomesForm'
 import OutcomesForm from '../components/forms/OutcomesForm'
 import ShowBanks from '../components/ShowBanks.js'
 import ShowTransactions from '../components/ShowTransactions.js'
-import BankChart from '../components/BankChart.js'
-import CategoryChart from '../components/CategoryChart.js'
+import BankChart from '../components/charts/BankChart.js'
+import CategoryChart from '../components/charts/CategoryChart.js'
 
 const Home = () => {
   const [showMenu, setShowMenu] = useState(true);

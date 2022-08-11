@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from 'react'
 import { Chart } from "react-google-charts";
 
+//Column chart: Comparison between categories incomes/outcomes
+
 function CategoryChart() {
     const [dataChart, setDataChart] = useState();
     useEffect(()=>{
@@ -8,9 +10,10 @@ function CategoryChart() {
         const banksData = await fetch('banks.json', {method: "GET"})
         const dataBanks = await banksData.json()
 
+        //Sums the amount of money of the incomes/outcomes depending on the category
         const sumData = (type, cat) => {
           var amountSum = 0;
-          type.map((t)=>{
+          (dataBanks[0][type]).map((t)=>{
             if(t.category === cat){
               amountSum += t.amount
             }
@@ -20,12 +23,12 @@ function CategoryChart() {
         }
         const data = [
           ["Category", "Income", "Outcome"],
-          ["Food", sumData(dataBanks[0].incomes, 'Food'), sumData(dataBanks[0].outcomes, 'Food')],
-          ["Travel", sumData(dataBanks[0].incomes, 'Travel'), sumData(dataBanks[0].outcomes, 'Travel')],
-          ["Work", sumData(dataBanks[0].incomes, 'Work'), sumData(dataBanks[0].outcomes, 'Work')],
-          ["Gift", sumData(dataBanks[0].incomes, 'Gift'), sumData(dataBanks[0].outcomes, 'Gift')],
-          ["Selling", sumData(dataBanks[0].incomes, 'Selling'), sumData(dataBanks[0].outcomes, 'Selling')],
-          ["Other", sumData(dataBanks[0].incomes, 'Other'), sumData(dataBanks[0].outcomes, 'Other')]
+          ["Food", sumData('incomes', 'Food'), sumData('outcomes', 'Food')],
+          ["Travel", sumData('incomes', 'Travel'), sumData('outcomes', 'Travel')],
+          ["Work", sumData('incomes', 'Work'), sumData('outcomes', 'Work')],
+          ["Gift", sumData('incomes', 'Gift'), sumData('outcomes', 'Gift')],
+          ["Selling", sumData('incomes', 'Selling'), sumData('outcomes', 'Selling')],
+          ["Other", sumData('incomes', 'Other'), sumData('outcomes', 'Other')]
         ];
         setDataChart(data)
         }

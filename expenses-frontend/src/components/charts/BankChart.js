@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { Chart } from "react-google-charts";
 
+//Pie chart: amount of money in every bank account
 
 function BankChart() {
   const [chartData, setChartData] = useState ()
+  
   useEffect(()=>{
     async function getBanks(){
       const banksData = await fetch('banks.json', {method: "GET"})

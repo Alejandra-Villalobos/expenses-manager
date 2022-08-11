@@ -4,8 +4,10 @@ import { Outlet, Link } from "react-router-dom"
 import loginImg from '../assets/login.png'
 
 const Login = () => {
-    const [formValues, setFormValues] = useState([]);
-    const [formRegValues, setFormRegValues] = useState([]);
+    const [loginFormValues, setLoginFormValues] = useState([]);
+    const [regFormValues, setRegFormValues] = useState([]);
+
+    //Toggle login/registration forms
     const [showLoginForm, setShowLoginForm] = useState(true);
     const [showRegisterForm, setShowRegisterForm] = useState(false);
 
@@ -19,10 +21,11 @@ const Login = () => {
         setShowLoginForm(!showLoginForm);
     }
 
-    const handeFormChange = (e) => {
+    //Handle login form
+    const handleLoginFormChange = (e) => {
         const name = e.target.name;
         const value = e.target.value;
-        setFormValues((values)=>{
+        setLoginFormValues((values)=>{
             return{
                 ...values,
                 [name]: value
@@ -30,10 +33,11 @@ const Login = () => {
         });
     };
 
-    const handeFormRegChange = (e) => {
+    //Handle registration form
+    const handleRegFormChange = (e) => {
         const name = e.target.name;
         const value = e.target.value;
-        setFormRegValues((values)=>{
+        setRegFormValues((values)=>{
             return{
                 ...values,
                 [name]: value
@@ -41,13 +45,24 @@ const Login = () => {
         });
     };
 
-    const handleSubmit = (e) => {
+    //Handle registration form submit
+    const handleRegSubmit = (e) => {
         e.preventDefault();
-        if(formRegValues.userPass !== formRegValues.userPassConf){
+        if(regFormValues.userPass !== regFormValues.userPassConf){
             alert(`Las contraseñas no coinciden`)
             return
         }
-        alert(`Usuario: ${formValues.userName}`)
+        alert(`Usuario: ${regFormValues.userName}`)
+    }
+
+    //Handle login form submit
+    const handleLoginSubmit = (e) => {
+        e.preventDefault();
+        if(regFormValues.userPass !== regFormValues.userPassConf){
+            alert(`Las contraseñas no coinciden`)
+            return
+        }
+        alert(`Usuario: ${regFormValues.userName}`)
     }
 
     return (
@@ -57,20 +72,20 @@ const Login = () => {
                 {showLoginForm &&
                 <div className='flex flex-row justify-around items-center h-5/6'>
                     <img src={loginImg} alt='login' className='w-80 h-80 drop-shadow-md'/>
-                    <form onSubmit={handleSubmit} className="bg-white rounded-lg border-gray-300 shadow-md border-1 p-5">
+                    <form onSubmit={handleLoginSubmit} className="bg-white rounded-lg border-gray-300 shadow-md border-1 p-5">
                         <div className="grid gap-6 mb-6 md:grid-cols-1">
                             <div>
                                 <label className="block mb-2 text-sm font-medium text-gray-900 ">User</label>
                                 <input type="text" className="bg-white shadow-inner border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="John" required 
-                                value={formValues.userName || ""}
-                                onChange={handeFormChange}
+                                value={loginFormValues.userName || ""}
+                                onChange={handleLoginFormChange}
                                 name="userName"/>
                             </div>
                             <div>
                                 <label className="block mb-2 text-sm font-medium text-gray-900 ">Password</label>
                                 <input type="password" className="bg-white shadow-inner border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="•••••••••" required 
-                                value={formValues.userPass || ""}
-                                onChange={handeFormChange}
+                                value={loginFormValues.userPass || ""}
+                                onChange={handleLoginFormChange}
                                 name="userPass"/>
                             </div> 
                             <div className='grid gap-6 mb-6 md:grid-cols-2'>
@@ -83,35 +98,35 @@ const Login = () => {
                 {showRegisterForm &&
                 <div className='flex flex-row justify-around items-center h-5/6'>
                 <img src={loginImg} alt='register' className='w-80 h-80'/>
-                <form onSubmit={handleSubmit} className="bg-white rounded-lg border-gray-300 shadow-md border-1 p-5">
+                <form onSubmit={handleRegSubmit} className="bg-white rounded-lg border-gray-300 shadow-md border-1 p-5">
                     <div className="grid gap-6 mb-6 md:grid-cols-1">
                         <div>
                             <label className="block mb-2 text-sm font-medium text-gray-900 ">User</label>
                             <input type="text" className="bg-white shadow-inner border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="John" required 
                             name='userName'
-                            value={formRegValues.userName || ""}
-                            onChange={handeFormRegChange}/>
+                            value={regFormValues.userName || ""}
+                            onChange={handleRegFormChange}/>
                         </div>
                         <div>
                             <label className="block mb-2 text-sm font-medium text-gray-900">Email address</label>
                             <input type="email" className="bg-white shadow-inner border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="john.doe@company.com" required
                             name='userMail'
-                            value={formRegValues.userMail || ""}
-                            onChange={handeFormRegChange}/>
+                            value={regFormValues.userMail || ""}
+                            onChange={handleRegFormChange}/>
                         </div> 
                         <div>
                             <label className="block mb-2 text-sm font-medium text-gray-900 ">Password</label>
                             <input type="password" className="bg-white shadow-inner border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="•••••••••" required 
                             name='userPass'
-                            value={formRegValues.userPass || ""}
-                            onChange={handeFormRegChange}/>
+                            value={regFormValues.userPass || ""}
+                            onChange={handleRegFormChange}/>
                         </div> 
                         <div>
                             <label className="block mb-2 text-sm font-medium text-gray-900 ">Password Confirmation</label>
                             <input type="password" className="bg-white shadow-inner border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="•••••••••" required 
                             name='userPassConf'
-                            value={formRegValues.userPassConf || ""}
-                            onChange={handeFormRegChange}/>
+                            value={regFormValues.userPassConf || ""}
+                            onChange={handleRegFormChange}/>
                         </div> 
                         <div className='grid gap-6 mb-6 md:grid-cols-2'>
                             <Link to={'/home'}><input type="submit" value="Registrarse" className="text-white shadow-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"/></Link>

@@ -6,10 +6,14 @@ import OutcomesForm from '../components/forms/OutcomesForm.js'
 import ShowTransactions from '../components/ShowTransactions.js'
 
 function Transactions() {
+  //Toggle side menu
   const [showMenu, setShowMenu] = useState(true)
+
+  //Toggle incomes/outcomes forms
   const [showIncomeForm, setShowIncomeForm] = useState(false)
   const [showOutcomeForm, setShowOutcomeForm] = useState(false)
 
+  //Page height to set the side menu height
   const viewHeight = window.outerHeight;
 
 

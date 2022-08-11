@@ -32,8 +32,8 @@ function IncomesForm(props) {
                     name='bankName'
                     required>
                         <option value="" disabled selected>Select a registered bank account</option>
-                        <option value="Banco Central - John Doe">Banco Central - John Doe</option>
-                        <option value="Davivienda - John A. Doe">Davivienda - John A. Doe</option>
+                        <option value="Banco Central - John Doe">#GYHU4578 Banco Central - John Doe</option>
+                        <option value="Davivienda - John A. Doe">#ERTY4712 Davivienda - John A. Doe</option>
                   </select>
                   <label>Amount</label>
                   <input className=' mb-6 shadow-inner border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5'

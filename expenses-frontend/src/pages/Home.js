@@ -9,10 +9,14 @@ import BankChart from '../components/charts/BankChart.js'
 import CategoryChart from '../components/charts/CategoryChart.js'
 
 const Home = () => {
+  //Toggle side menu
   const [showMenu, setShowMenu] = useState(true);
+
+  //Toggle incomes/outcomes forms
   const [showIncomeForm, setShowIncomeForm] = useState(false);
   const [showOutcomeForm, setShowOutcomeForm] = useState(false);
 
+  //Page height to set the side menu height
   const viewHeight = window.outerHeight;
 
   return (

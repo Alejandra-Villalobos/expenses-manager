@@ -21,12 +21,13 @@ function OutcomesForm(props) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        alert(`Outcome data: ${newOutcome.fromBankName} ${newOutcome.toBankName} ${newOutcome.amount} ${newOutcome.outcomeCategory} ${newOutcome.outcomeDescription}`)
+        alert(`Outcome data: ${newOutcome.fromBankName} ${newOutcome.toAccount} ${newOutcome.toUserBank} ${newOutcome.amount} ${newOutcome.outcomeCategory} ${newOutcome.outcomeDescription}`)
         setNewOutcome([])
+        setTransactionTo(false)
         props.setTrigger(false)
     };
     return (props.trigger) ? (
-        <div className='fixed top-0 left-0 w-full h-screen flex justify-center items-center bg-black bg-opacity-40'>
+        <div className='z-50 fixed top-0 left-0 w-full h-screen flex justify-center items-center bg-black bg-opacity-40'>
             <div className='relative p-8 bg-white rounded-md'>
                 <form className='flex flex-col' onSubmit={handleSubmit}>
                   <h1 className='text-center font-bold mb-6 text-xl'>Add Outcome</h1>
@@ -37,8 +38,8 @@ function OutcomesForm(props) {
                     name='fromBankName'
                     required>
                         <option value="" disabled selected>Select a registered bank account</option>
-                        <option value="Banco Central - John Doe">Banco Central - John Doe</option>
-                        <option value="Davivienda - John A. Doe">Davivienda - John A. Doe</option>
+                        <option value="Banco Central - John Doe">#GYHU7841 Banco Central - John Doe</option>
+                        <option value="Davivienda - John A. Doe">#ERTG3256 Davivienda - John A. Doe</option>
                   </select>
                   <label className="inline-flex relative items-center cursor-pointer mb-6">
                    <input type="checkbox" onChange={handleChecked} className="sr-only peer"/>
@@ -46,18 +47,28 @@ function OutcomesForm(props) {
                    <span className="ml-3 text-sm font-medium text-gray-900">This transaction is for another account</span>
                   </label>
                   {transactionTo &&
-                  <>
-                  <label>To local account</label>
-                  <select className=' mb-6 shadow-inner border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5'
-                    value={newOutcome.toBankName || ""}
-                    onChange={handeFormChange}
-                    name='toBankName'
-                    required>
-                        <option value="" disabled selected>Select a registered bank account</option>
-                        <option value="Banco Central - John Doe">Banco Central - John Doe</option>
-                        <option value="Davivienda - John A. Doe">Davivienda - John A. Doe</option>
-                  </select>
-                  </>}
+                  <div className='flex flex-row items-center mb-6 gap-3'>
+                    <div>
+                      <label>Account number</label>
+                      <input className='shadow-inner border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-max p-2.5'
+                        type="text"
+                        value={newOutcome.toAccount || ""}
+                        onChange={handeFormChange}
+                        name='toAccount'
+                        placeholder="8465AB23"
+                        required/>
+                    </div>
+                    <div>
+                      <label>Bank Account</label>
+                      <input className='shadow-inner border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-max p-2.5'
+                        type="text"
+                        value={newOutcome.toUserBank || ""}
+                        onChange={handeFormChange}
+                        name='toUserBank'
+                        placeholder="Banco Central"
+                        required/>
+                      </div>
+                  </div>}
                   <label>Amount</label>
                   <input className=' mb-6 shadow-inner border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5'
                     type="number"
@@ -88,7 +99,7 @@ function OutcomesForm(props) {
                     placeholder="Dinner payment from Jane"/>
                   
                   <div className='flex flex-row justify-between'>
-                    <button className='flex items-center shadow-md bg-red-500 rounded-lg px-5 py-2' onClick={() => props.setTrigger(false)}>Cancel</button>
+                    <button className='flex items-center shadow-md bg-red-500 rounded-lg px-5 py-2' onClick={() => {props.setTrigger(false); setTransactionTo(false)}}>Cancel</button>
                     <input className='flex items-center shadow-md bg-green-500 rounded-lg px-5 py-2' type='submit' value='Add'/>
                   </div>
                 </form>

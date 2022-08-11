@@ -6,9 +6,13 @@ import { MdAddCircle } from 'react-icons/md'
 import ShowBanks from '../components/ShowBanks.js'
 
 const Banks = () => {
+  //Toggle side menu
   const [showMenu, setShowMenu] = useState(true)
+
+  //Toggle add banks form
   const [showBankForm, setShowBankForm] = useState(false)
 
+  //Page height to set the side menu height
   const viewHeight = window.outerHeight;
 
   return (

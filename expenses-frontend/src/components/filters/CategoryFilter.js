@@ -24,12 +24,12 @@ const CategoryFilter = (props) => {
         <div className='fixed top-0 left-0 w-full h-screen flex justify-center items-center bg-black bg-opacity-40'>
             <div className='relative p-8 bg-white rounded-md w-64'>
                 <div className='flex flex-row items-center justify-evenly flex-wrap mb-5 gap-5'>
-                    <label>Food</label><input value='food' type="checkbox" onChange={handleChecked}/>
-                    <label>Travel</label><input value='travel' type="checkbox" onChange={handleChecked}/>
-                    <label>Work</label><input value='work' type="checkbox" onChange={handleChecked}/>
-                    <label>Gift</label><input value='gift' type="checkbox" onChange={handleChecked}/>
-                    <label>Selling</label><input value='selling' type="checkbox" onChange={handleChecked}/>
-                    <label>Other</label><input value='other' type="checkbox" onChange={handleChecked}/>
+                    <label>Food</label><input value='Food' type="checkbox" onChange={handleChecked}/>
+                    <label>Travel</label><input value='Travel' type="checkbox" onChange={handleChecked}/>
+                    <label>Work</label><input value='Work' type="checkbox" onChange={handleChecked}/>
+                    <label>Gift</label><input value='Gift' type="checkbox" onChange={handleChecked}/>
+                    <label>Selling</label><input value='Selling' type="checkbox" onChange={handleChecked}/>
+                    <label>Other</label><input value='Other' type="checkbox" onChange={handleChecked}/>
                 </div>
                 <div className='flex flex-row justify-between'>
                     <button className='flex items-center shadow-md bg-orange-500 rounded-lg px-5 py-2' onClick={() => props.setTrigger(false)}>Cancel</button>

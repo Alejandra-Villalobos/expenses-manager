@@ -20,7 +20,7 @@ function Transactions() {
 
   const [from, setFrom] = useState(new Date());
   const [to, setTo] = useState(new Date());
-  const [categories, setCategories] = useState();
+  const [categories, setCategories] = useState(null);
 
 
   //Page height to set the side menu height
@@ -47,7 +47,7 @@ function Transactions() {
           <CategoryFilter trigger={showCategoryFilter} setTrigger={setShowCategoryFilter} setCategories={setCategories}/>
           <button className='bg-yellow-300 border-2 rounded-lg border-white p-4 shadow-md'>Bank</button>
         </section>
-        <ShowTransactions/>
+        <ShowTransactions categories={categories}/>
       </div>
     </div>
     </>

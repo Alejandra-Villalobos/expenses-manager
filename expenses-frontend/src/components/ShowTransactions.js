@@ -4,7 +4,7 @@ import { BiPlusMedical } from 'react-icons/bi'
 import { BsCurrencyBitcoin, BsCurrencyDollar, BsCurrencyEuro } from 'react-icons/bs'
 
 
-function ShowTransactions() {
+function ShowTransactions(props) {
     var [transactions, setTransactions] = useState([])
     const setCur = (curr) => {
       if(curr === 'dollar') return <BsCurrencyDollar/>
@@ -35,10 +35,13 @@ function ShowTransactions() {
       getTransactions()
       
     }, [])
+
+    //transactions = props.categories === null ? transactions : transactions.filter((t)=>t.category===props.categories[0])
+
     transactions = transactions.sort((a,b)=> a.date < b.date ? 1 : -1)
     return (
       <>
-      <div className='flex flex-row justify-between flex-wrap mr-3 ml-3'>
+      <div className='flex flex-row justify-start flex-wrap mr-3 ml-3'>
             {transactions.map((transaction, i)=>
               <div key={i} className={`mt-5 ml-2 rounded-md border-2 shadow-md hover:scale-110 hover:ml-5 hover:mr-5 transition-all ${transaction.hasOwnProperty('toAccount') ? prop.out['bg-border'] : prop.in['bg-border'] }`}>
                 <p className={`text-white font-bold font-fira text-cente px-12 ${transaction.hasOwnProperty('toAccount') ? prop.out['p-bg'] : prop.in['p-bg'] }`}>{transaction.hasOwnProperty('toAccount') ? prop.out.type : prop.in.type }</p>

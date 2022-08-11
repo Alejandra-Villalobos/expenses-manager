@@ -36,7 +36,7 @@ function ShowTransactions(props) {
       
     }, [])
 
-    //transactions = props.categories === null ? transactions : transactions.filter((t)=>t.category===props.categories[0])
+    transactions = (props.categories === null) || (!props.categories.length) ? transactions : transactions.filter((t)=>props.categories.includes(t.category))
 
     transactions = transactions.sort((a,b)=> a.date < b.date ? 1 : -1)
     return (

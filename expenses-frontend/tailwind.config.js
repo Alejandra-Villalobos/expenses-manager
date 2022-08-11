@@ -7,7 +7,7 @@ module.exports = {
     extend: {
       fontFamily: {
         'fira': ['Fira Sans Condensed', 'sans-serif']
-      }
+      },
     },
   },
   plugins: [],

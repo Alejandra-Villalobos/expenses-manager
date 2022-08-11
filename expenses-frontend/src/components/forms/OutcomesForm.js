@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 
 function OutcomesForm(props) {
     const [newOutcome, setNewOutcome] = useState([]);
+
+    //Toggle transfer to account option
     const [transactionTo, setTransactionTo] = useState(false);
 
     const handeFormChange = (e) => {
@@ -26,6 +28,7 @@ function OutcomesForm(props) {
         setTransactionTo(false)
         props.setTrigger(false)
     };
+    
     return (props.trigger) ? (
         <div className='z-50 fixed top-0 left-0 w-full h-screen flex justify-center items-center bg-black bg-opacity-40'>
             <div className='relative p-8 bg-white rounded-md'>

@@ -4,6 +4,8 @@ import NavBar from '../components/NavBar.js'
 import IncomesForm from '../components/forms/IncomesForm.js'
 import OutcomesForm from '../components/forms/OutcomesForm.js'
 import ShowTransactions from '../components/ShowTransactions.js'
+import DateFilter from '../components/filters/DateFilter.js'
+import CategoryFilter from '../components/filters/CategoryFilter.js'
 
 function Transactions() {
   //Toggle side menu
@@ -13,9 +15,16 @@ function Transactions() {
   const [showIncomeForm, setShowIncomeForm] = useState(false)
   const [showOutcomeForm, setShowOutcomeForm] = useState(false)
 
+  const [showDataFilter, setShowDataFilter] = useState(false)
+  const [showCategoryFilter, setShowCategoryFilter] = useState(false)
+
+  const [from, setFrom] = useState(new Date());
+  const [to, setTo] = useState(new Date());
+  const [categories, setCategories] = useState();
+
+
   //Page height to set the side menu height
   const viewHeight = window.outerHeight;
-
 
   return (
     <>
@@ -32,8 +41,10 @@ function Transactions() {
       </section>
         <section className='flex flex-row mt-8 gap-x-5 items-center'>
           <p className='ml-8 font-bold text-xl'>Sort by:</p>
-          <button className='bg-red-500 border-2 rounded-lg border-white p-4 shadow-md'>Date</button>
-          <button className='bg-orange-400 border-2 rounded-lg border-white p-4 shadow-md'>Category</button>
+          <button onClick={() => setShowDataFilter(true)} className='bg-red-500 border-2 rounded-lg border-white p-4 shadow-md'>Date</button>
+          <DateFilter trigger={showDataFilter} setTrigger={setShowDataFilter} setFrom={setFrom} setTo={setTo}/>
+          <button onClick={() => setShowCategoryFilter(true)} className='bg-orange-400 border-2 rounded-lg border-white p-4 shadow-md'>Category</button>
+          <CategoryFilter trigger={showCategoryFilter} setTrigger={setShowCategoryFilter} setCategories={setCategories}/>
           <button className='bg-yellow-300 border-2 rounded-lg border-white p-4 shadow-md'>Bank</button>
         </section>
         <ShowTransactions/>

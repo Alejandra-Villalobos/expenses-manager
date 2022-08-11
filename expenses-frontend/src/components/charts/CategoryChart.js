@@ -49,7 +49,7 @@ function CategoryChart() {
 
   return (
     <div className='flex flex-col content-center w-full items-center'>
-      <h1 className='text-center font-bold text-2xl -mb-8'>Categories: incomes vs outcomes</h1>
+      <h1 className='text-center font-bold text-2xl -mb-8 -ml-11'>Categories: incomes vs outcomes</h1>
       <Chart
         chartType="ColumnChart"
         width="100%"

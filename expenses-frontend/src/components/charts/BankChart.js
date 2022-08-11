@@ -32,7 +32,7 @@ function BankChart() {
   
   return (
     <div className='flex flex-col content-center w-full items-center'>
-      <h1 className='text-center font-bold text-2xl -mb-8'>Bank amount distribution</h1>
+      <h1 className='text-center font-bold text-2xl -mb-8 -ml-11'>Bank amount distribution</h1>
       <Chart
       chartType="PieChart"
       data={chartData}

@@ -40,7 +40,7 @@ function ShowTransactions() {
       <>
       <div className='flex flex-row justify-between flex-wrap mr-3 ml-3'>
             {transactions.map((transaction, i)=>
-              <div key={i} className={`mt-5 ml-2 rounded-md border-2 shadow-md ${transaction.hasOwnProperty('toAccount') ? prop.out['bg-border'] : prop.in['bg-border'] }`}>
+              <div key={i} className={`mt-5 ml-2 rounded-md border-2 shadow-md hover:scale-110 hover:ml-5 hover:mr-5 transition-all ${transaction.hasOwnProperty('toAccount') ? prop.out['bg-border'] : prop.in['bg-border'] }`}>
                 <p className={`text-white font-bold font-fira text-cente px-12 ${transaction.hasOwnProperty('toAccount') ? prop.out['p-bg'] : prop.in['p-bg'] }`}>{transaction.hasOwnProperty('toAccount') ? prop.out.type : prop.in.type }</p>
                 <p className='font-fira font-bold text-lg text-center flex items-center justify-center gap-1'>
                 {transaction.hasOwnProperty('toAccount') ? prop.out.symbol : prop.in.symbol} {setCur(transaction.currency)} {transaction.amount}</p>

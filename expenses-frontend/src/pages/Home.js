@@ -40,9 +40,9 @@ const Home = () => {
           <h2 className='text-center font-bold text-2xl'>Bank Accounts</h2>
           <ShowBanks/>
         </section>
-        <section className='mt-12 mb-8'>
+        <section className='mt-12 mb-8 flex flex-col justify-center'>
           <h2 className='text-center font-bold text-2xl'>Transactions</h2>
-          <ShowTransactions className='flex flex-wrap' categories={null} from={null} to={null} banks={null}/>
+          <ShowTransactions categories={null} from={null} to={null} banks={null}/>
         </section>
       </div>
     </div>

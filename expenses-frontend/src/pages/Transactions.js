@@ -41,7 +41,7 @@ function Transactions() {
     <NavBar setState={setShowMenu} state={showMenu}/>
     <div className='flex flex-row bg-emerald-100 mt-14 h-full w-screen'>
     {showMenu && <SideMenu style={{ height: viewHeight }}/>}
-    <div className='w-full bg-emerald-100 h-screen'>
+    <div className='w-full bg-emerald-100 h-full'>
       <h1 className='text-center mt-8 font-bold text-2xl'>Transactions</h1>
       <section className='flex flex-row justify-center items-center gap-x-5 mt-8'>
         <button onClick={() => setShowOutcomeForm(true)} className='bg-green-500 border-2 rounded-lg border-white p-4 shadow-md'>Add Expense</button>

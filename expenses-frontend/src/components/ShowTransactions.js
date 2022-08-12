@@ -6,11 +6,14 @@ import { BsCurrencyBitcoin, BsCurrencyDollar, BsCurrencyEuro } from 'react-icons
 
 function ShowTransactions(props) {
     var [transactions, setTransactions] = useState([])
+    var [data, setData] = useState([])
+
     const setCur = (curr) => {
       if(curr === 'dollar') return <BsCurrencyDollar/>
       else if (curr === 'euro') return <BsCurrencyEuro/>
       else if (curr === 'bitcoin') return <BsCurrencyBitcoin/>
     }
+    
     const prop = {
       out: {
         "bg-border": 'border-red-600 bg-red-300',
@@ -30,15 +33,39 @@ function ShowTransactions(props) {
       async function getTransactions(){
         const transactionsData = await fetch('banks.json', {method: "GET"})
         const data = await transactionsData.json()
-        setTransactions(data[0].outcomes.concat(data[0].incomes))
+        const incomes = data.map((d)=>{return d.incomes})
+        const outcomes = data.map((d)=>{return d.outcomes})
+        setData(data)
+        setTransactions((incomes.concat(outcomes)).flat())
       }
       getTransactions()
-      
     }, [])
 
-    transactions = (props.from === null) || (props.to === null) ? transactions : transactions.filter((t)=>(new Date(t.date) <= props.to && new Date(t.date) >= props.from))
+    const filterDate = (transactions) => {
+      return transactions.filter((t)=>(new Date(t.date) <= props.to && new Date(t.date) >= props.from))
+    }
 
-    transactions = (props.categories === null) || (!props.categories.length) ? transactions : transactions.filter((t)=>props.categories.includes(t.category))
+    const filterCategory = (transactions) => {
+      return transactions.filter((t)=>props.categories.includes(t.category))
+    }
+
+    const filterBanks = () => {
+      var dataBanksFiltered = data.filter((d)=>props.banks.includes(d.bankName))
+      var filteredIncomes = dataBanksFiltered.map((bank)=>{return bank.incomes})
+      var filteredOutcomes = dataBanksFiltered.map((bank)=>{return bank.outcomes})
+      var result = filteredIncomes.concat(filteredOutcomes).flat()
+
+      if((props.from !== null) || (props.to !== null)) result = filterDate(result)
+      if((props.categories !== null) || (!!props.categories.length)) result = filterCategory(result)
+
+      return result
+    }
+
+    transactions = (props.from === null) || (props.to === null) ? transactions : filterDate(transactions)
+
+    transactions = (props.categories === null) || (!props.categories.length) ? transactions : filterCategory(transactions)
+
+    transactions = (props.banks === null) || (!props.banks.length) ? transactions : filterBanks()
 
     transactions = transactions.sort((a,b)=> a.date < b.date ? 1 : -1)
     return (

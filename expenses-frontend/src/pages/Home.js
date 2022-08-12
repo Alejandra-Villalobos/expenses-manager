@@ -42,7 +42,7 @@ const Home = () => {
         </section>
         <section className='mt-12 mb-8'>
           <h2 className='text-center font-bold text-2xl'>Transactions</h2>
-          <ShowTransactions className='flex flex-wrap' categories={null} from={null} to={null}/>
+          <ShowTransactions className='flex flex-wrap' categories={null} from={null} to={null} banks={null}/>
         </section>
       </div>
     </div>

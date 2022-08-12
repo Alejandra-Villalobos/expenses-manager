@@ -5,18 +5,8 @@ const CategoryFilter = (props) => {
     var categories = [];
 
     const handleChecked = (e) => {
-        if(e.target.checked){
-            categories.push(e.target.value)
-            return
-        }
-        else{
-            categories.map((cat, i)=>{
-                if(cat===e.target.value){
-                    categories.splice(i, 1)
-                }
-            })
-            return
-        }
+        if(e.target.checked) categories.push(e.target.value)
+        else categories.filter((cat) => cat !== e.target.value)
 
     }
 

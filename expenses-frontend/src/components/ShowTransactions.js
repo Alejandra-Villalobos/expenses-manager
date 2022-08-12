@@ -36,6 +36,8 @@ function ShowTransactions(props) {
       
     }, [])
 
+    transactions = (props.from === null) || (props.to === null) ? transactions : transactions.filter((t)=>(new Date(t.date) <= props.to && new Date(t.date) >= props.from))
+
     transactions = (props.categories === null) || (!props.categories.length) ? transactions : transactions.filter((t)=>props.categories.includes(t.category))
 
     transactions = transactions.sort((a,b)=> a.date < b.date ? 1 : -1)

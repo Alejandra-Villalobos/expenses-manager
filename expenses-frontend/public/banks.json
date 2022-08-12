@@ -11,7 +11,7 @@
                 "id": 1,
                 "currency": "euro",
                 "amount": 20.00,
-                "date": "27-5-2022",
+                "date": "5/27/2022",
                 "category": "Work",
                 "description": null
             },
@@ -19,7 +19,7 @@
                 "id": 2,
                 "currency": "euro",
                 "amount": 520.00,
-                "date": "29-6-2022",
+                "date": "6/29/2022",
                 "category": "Gift",
                 "description": "Birthday gift from Paula"
             },
@@ -27,7 +27,7 @@
                 "id": 3,
                 "currency": "euro",
                 "amount": 50.25,
-                "date": "29-7-2022",
+                "date": "7/29/2022",
                 "category": "Food",
                 "description": "Dinner with Anne"
             },
@@ -35,7 +35,7 @@
                 "id": 4,
                 "currency": "euro",
                 "amount": 52.25,
-                "date": "30-7-2022",
+                "date": "7/30/2022",
                 "category": "Food",
                 "description": "Dinner with Tom"
             }
@@ -48,7 +48,7 @@
                 "amount": 10.00,
                 "toAccount": "BCPO5423",
                 "toUserBank": "Banco Central",
-                "date": "27-5-2022",
+                "date": "7/27/2022",
                 "category": "Travel",
                 "description": null
             },
@@ -58,7 +58,7 @@
                 "amount": 68.80,
                 "toAccount": "GYHU8945",
                 "toUserBank": "BAC",
-                "date": "29-6-2022",
+                "date": "6/29/2022",
                 "category": "Work",
                 "description": "Payment to Joe"
             },
@@ -68,7 +68,7 @@
                 "amount": 5.50,
                 "toAccount": "87964523",
                 "toUserBank": "Davivienda",
-                "date": "29-7-2022",
+                "date": "7/29/2022",
                 "category": "Food",
                 "description": "Friday party"
             }
@@ -88,7 +88,7 @@
                 "id": 1,
                 "currency": "dollar",
                 "amount": 30.00,
-                "date": "27-5-2022",
+                "date": "27/5/2022",
                 "category": "Gift",
                 "description": null
             },
@@ -96,7 +96,7 @@
                 "id": 2,
                 "currency": "dollar",
                 "amount": 3.00,
-                "date": "2-8-2022",
+                "date": "2/8/2022",
                 "category": "Other",
                 "description": "Birthday gift from John"
             },
@@ -104,7 +104,7 @@
                 "id": 3,
                 "currency": "dollar",
                 "amount": 52.25,
-                "date": "29-7-2022",
+                "date": "29/7/2022",
                 "category": "Food",
                 "description": "Dinner with Jane"
             }
@@ -117,7 +117,7 @@
                 "amount": 3000.00,
                 "toAccount": "459687AS",
                 "toUserBank": "Banco Central",
-                "date": "27-5-2022",
+                "date": "27/5/2022",
                 "category": "Travel",
                 "description": "Travel to Spain"
             },
@@ -127,7 +127,7 @@
                 "amount": 638.80,
                 "toAccount": null,
                 "toUserBank": null,
-                "date": "29-6-2022",
+                "date": "29/6/2022",
                 "category": "Work",
                 "description": "Payment to John"
             },
@@ -137,7 +137,7 @@
                 "amount": 5.50,
                 "toAccount": "BA458963",
                 "toUserBank": "Davivienda",
-                "date": "29-7-2022",
+                "date": "29/7/2022",
                 "category": "Other",
                 "description": "Mary's birthday"
             }
@@ -157,7 +157,7 @@
                 "id": 1,
                 "currency": "bitcoin",
                 "amount": 900.00,
-                "date": "22-5-2022",
+                "date": "22/5/2022",
                 "category": "Work",
                 "description": "Boss payment"
             },
@@ -165,7 +165,7 @@
                 "id": 2,
                 "currency": "bitcoin",
                 "amount": 520.00,
-                "date": "29-6-2022",
+                "date": "29/6/2022",
                 "category": "Selling",
                 "description": "Garage selling"
             },
@@ -173,7 +173,7 @@
                 "id": 3,
                 "currency": "bitcoin",
                 "amount": 50.25,
-                "date": "29-7-2022",
+                "date": "29/7/2022",
                 "category": "Food",
                 "description": "Dinner with Anne and John"
             }
@@ -186,7 +186,7 @@
                 "amount": 12000.00,
                 "toAccount": null,
                 "toUserBank": null,
-                "date": "27-5-2022",
+                "date": "27/5/2022",
                 "category": "Other",
                 "description": "New car"
             },
@@ -196,7 +196,7 @@
                 "amount": 79.80,
                 "toAccount": null,
                 "toUserBank": null,
-                "date": "29-6-2022",
+                "date": "29/6/2022",
                 "category": "Work",
                 "description": "Payment to Lisa"
             },
@@ -206,7 +206,7 @@
                 "amount": 2.20,
                 "toAccount": "4589KI23",
                 "toUserBank": "Davivienda",
-                "date": "30-7-2022",
+                "date": "30/7/2022",
                 "category": "Food",
                 "description": "Pizza"
             }
@@ -225,7 +225,7 @@
                 "id": 1,
                 "currency": "dollar",
                 "amount": 320.00,
-                "date": "22-5-2022",
+                "date": "22/5/2022",
                 "category": "Work",
                 "description": null
             },
@@ -233,7 +233,7 @@
                 "id": 2,
                 "currency": "dollar",
                 "amount": 560.00,
-                "date": "29-6-2022",
+                "date": "29/6/2022",
                 "category": "Selling",
                 "description": "Food selling"
             },
@@ -241,7 +241,7 @@
                 "id": 3,
                 "currency": "dollar",
                 "amount": 50.25,
-                "date": "29-7-2022",
+                "date": "29/7/2022",
                 "category": "Food",
                 "description": "Dinner with Anne and John"
             }
@@ -254,7 +254,7 @@
                 "amount": 130.00,
                 "toAccount": null,
                 "toUserBank": null,
-                "date": "27-5-2022",
+                "date": "27/5/2022",
                 "category": "Other",
                 "description": "Gas"
             },
@@ -264,7 +264,7 @@
                 "amount": 79.80,
                 "toAccount": null,
                 "toUserBank": null,
-                "date": "29-6-2022",
+                "date": "29/6/2022",
                 "category": "Gift",
                 "description": "Gift to Lisa"
             },
@@ -274,7 +274,7 @@
                 "amount": 2.20,
                 "toAccount": "BGYU9841",
                 "toUserBank": "Davivienda",
-                "date": "30-7-2022",
+                "date": "30/7/2022",
                 "category": "Food",
                 "description": "Lasagna"
             }

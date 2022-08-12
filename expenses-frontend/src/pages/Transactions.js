@@ -18,8 +18,8 @@ function Transactions() {
   const [showDataFilter, setShowDataFilter] = useState(false)
   const [showCategoryFilter, setShowCategoryFilter] = useState(false)
 
-  const [from, setFrom] = useState(new Date());
-  const [to, setTo] = useState(new Date());
+  const [from, setFrom] = useState(null);
+  const [to, setTo] = useState(null);
   const [categories, setCategories] = useState(null);
 
 
@@ -47,7 +47,7 @@ function Transactions() {
           <CategoryFilter trigger={showCategoryFilter} setTrigger={setShowCategoryFilter} setCategories={setCategories}/>
           <button className='bg-yellow-300 border-2 rounded-lg border-white p-4 shadow-md'>Bank</button>
         </section>
-        <ShowTransactions categories={categories}/>
+        <ShowTransactions categories={categories} from={from} to={to}/>
       </div>
     </div>
     </>

@@ -6,7 +6,6 @@ import { BsCurrencyBitcoin, BsCurrencyDollar, BsCurrencyEuro } from 'react-icons
 
 function ShowTransactions(props) {
     var [transactions, setTransactions] = useState([])
-    var [data, setData] = useState([])
 
     const setCur = (curr) => {
       if(curr === 'dollar') return <BsCurrencyDollar/>
@@ -33,37 +32,40 @@ function ShowTransactions(props) {
       async function getTransactions(){
         const transactionsData = await fetch('banks.json', {method: "GET"})
         const data = await transactionsData.json()
-        const incomes = data.map((d)=>{return d.incomes})
-        const outcomes = data.map((d)=>{return d.outcomes})
-        setData(data)
+        /*
+          Maps the incomes/outcomes in every data and also adds the 'bankName' field, which is included
+          only in data, outside incomes/outcomes
+        */
+        const incomes = data.map((d)=>{
+          d.incomes.map((income)=>{
+            return income['bankName'] = d.bankName
+          }); return d.incomes
+        })
+        const outcomes = data.map((d)=>{
+          d.outcomes.map((outcome)=>{
+            return outcome['bankName'] = d.bankName
+          }); return d.outcomes
+        })
         setTransactions((incomes.concat(outcomes)).flat())
       }
       getTransactions()
     }, [])
 
-    const filterDate = (transactions) => {
+    const filterDate = () => {
       return transactions.filter((t)=>(new Date(t.date) <= props.to && new Date(t.date) >= props.from))
     }
 
-    const filterCategory = (transactions) => {
+    const filterCategory = () => {
       return transactions.filter((t)=>props.categories.includes(t.category))
     }
 
     const filterBanks = () => {
-      var dataBanksFiltered = data.filter((d)=>props.banks.includes(d.bankName))
-      var filteredIncomes = dataBanksFiltered.map((bank)=>{return bank.incomes})
-      var filteredOutcomes = dataBanksFiltered.map((bank)=>{return bank.outcomes})
-      var result = filteredIncomes.concat(filteredOutcomes).flat()
-
-      if((props.from !== null) || (props.to !== null)) result = filterDate(result)
-      if((props.categories !== null) || (!!props.categories.length)) result = filterCategory(result)
-
-      return result
+      return transactions.filter((t)=>props.banks.includes(t.bankName))
     }
 
-    transactions = (props.from === null) || (props.to === null) ? transactions : filterDate(transactions)
+    transactions = (props.from === null) || (props.to === null) ? transactions : filterDate()
 
-    transactions = (props.categories === null) || (!props.categories.length) ? transactions : filterCategory(transactions)
+    transactions = (props.categories === null) || (!props.categories.length) ? transactions : filterCategory()
 
     transactions = (props.banks === null) || (!props.banks.length) ? transactions : filterBanks()
 
@@ -74,6 +76,7 @@ function ShowTransactions(props) {
             {transactions.map((transaction, i)=>
               <div key={i} className={`w-44 mt-5 rounded-md border-2 shadow-md hover:scale-105 hover:ml-4 hover:mr-4 transition-all ${transaction.hasOwnProperty('toAccount') ? prop.out['bg-border'] : prop.in['bg-border'] }`}>
                 <p className={`text-white font-bold font-fira text-cente px-12 ${transaction.hasOwnProperty('toAccount') ? prop.out['p-bg'] : prop.in['p-bg'] }`}>{transaction.hasOwnProperty('toAccount') ? prop.out.type : prop.in.type }</p>
+                <p>{transaction.bankName}</p>
                 <p className='font-fira font-bold text-lg text-center flex items-center justify-center gap-1'>
                 {transaction.hasOwnProperty('toAccount') ? prop.out.symbol : prop.in.symbol} {setCur(transaction.currency)} {transaction.amount}</p>
                 <p className='font-fira text-center'>{transaction.category}</p>

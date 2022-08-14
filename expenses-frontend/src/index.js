@@ -7,6 +7,7 @@ import Auth from './pages/Auth';
 import Home from './pages/Home';
 import Banks from './pages/Banks';
 import Transactions from './pages/Transactions'
+import NotFound from './pages/NotFound';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -16,6 +17,7 @@ root.render(
       <Route path='/home' element={<Home/>}/>
       <Route path='/banks' element={<Banks/>}/>
       <Route path='/transactions' element={<Transactions/>}/>
+      <Route path='*' element={<NotFound/>}/>
     </Routes>
   </BrowserRouter>
 );

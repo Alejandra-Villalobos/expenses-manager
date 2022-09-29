@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
+import { useCookies } from 'react-cookie';
 
 function Popup(props) {
+  const [cookies] = useCookies(['auth_token']);
   const [newBank, setNewBank] = useState([]);
+  const [disableSubmit, setDisableSubmit] = useState(false);
 
   const handeFormChange = (e) => {
     const name = e.target.name;
@@ -14,10 +17,36 @@ function Popup(props) {
     });
   };
 
-  const handleSubmit = (e) => {
+  const createBank = async (body) => {
+    const response = await fetch(
+      `http://localhost:8500/bank`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${cookies.auth_token}`,
+        },
+        body: JSON.stringify(body),
+      }
+    );
+    await response.json();
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    const account = newBank.bankAccount;
+    const name = newBank.bankName;
+    const currency = newBank.currency;
+    const amount = newBank.amount;
+    const user_name = newBank.userName;
+    try {
+        await createBank({ account, name, currency, amount, user_name })
         setNewBank([])
         props.setTrigger(false)
+    } catch (error) {
+      console.log(error);
+    }
+    setDisableSubmit(false);
   };
 
   return (props.trigger) ? (
@@ -35,9 +64,9 @@ function Popup(props) {
               <label>Bank Account</label>
               <input className=' mb-6 shadow-inner border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5'
                 type="text"
-                value={newBank.banAccount || ""}
+                value={newBank.bankAccount || ""}
                 onChange={handeFormChange} 
-                name='banAccount'
+                name='bankAccount'
                 placeholder="ABC45678" required/>
               <label>User Name</label>
               <input className=' mb-6 shadow-inner border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5'
@@ -67,7 +96,7 @@ function Popup(props) {
               </div>
               <div className='flex flex-row justify-between'>
                 <button className='flex items-center shadow-md bg-red-500 rounded-lg px-5 py-2' onClick={() => props.setTrigger(false)}>Cancel</button>
-                <input className='flex items-center shadow-md bg-green-500 rounded-lg px-5 py-2' type='submit' value='Add'/>
+                <input disabled={disableSubmit} className='flex items-center shadow-md bg-green-500 rounded-lg px-5 py-2' type='submit' value='Add'/>
               </div>
             </form>
         </div>

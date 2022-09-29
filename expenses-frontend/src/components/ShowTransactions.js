@@ -7,7 +7,6 @@ import { useCookies } from 'react-cookie';
 
 function ShowTransactions(props) {
     const [cookies] = useCookies(['auth_token']);
-    const [disableSubmit, setDisableSubmit] = useState(false);
     var [transactions, setTransactions] = useState([])
 
     const setCur = (curr) => {
@@ -68,10 +67,10 @@ function ShowTransactions(props) {
 
         const incomes = incomesData.data;
         const outcomes = outcomesData.data;
-        setTransactions((incomes.concat(outcomes)).flat())
+        setTransactions((incomes.concat(outcomes)).flat().sort((a, b) => a.add_date > b.add_date))
       }
       getUserTransactions()
-    }, [])
+    }, [transactions])
 
     const filterDate = () => {
       return transactions.filter((t)=>(new Date(t.date) <= props.to && new Date(t.date) >= props.from))
@@ -104,6 +103,7 @@ function ShowTransactions(props) {
                 <p className='font-fira text-center'>{transaction.category}</p>
                 <p className='font-fira text-center'>{transaction.description}</p>
                 <p className='font-fira text-center'>{transaction.add_date}</p>
+                {transaction.to_account != null && <p className='font-fira text-center'>#{transaction.to_account} - {transaction.to_bank}</p>}
               </div>
             )}
       </div>

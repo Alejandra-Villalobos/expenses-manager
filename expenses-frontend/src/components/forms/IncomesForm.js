@@ -1,7 +1,34 @@
-import React, { useState } from 'react'
+import { useCookies } from 'react-cookie';
+import React, { useState, useEffect } from 'react'
 
 function IncomesForm(props) {
+    const [cookies] = useCookies(['auth_token']);
     const [newIncome, setNewIncome] = useState([]);
+    const [banks, setBanks] = useState([]);
+    const [disableSubmit, setDisableSubmit] = useState(false);
+
+    const getBanks = async () => {
+      const response = await fetch(
+        `http://localhost:8500/bank`,
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${cookies.auth_token}`,
+          },
+        }
+      );
+      const banks = await response.json();
+      return banks;
+    };
+
+  useEffect(()=>{
+    async function getUserBanks(){
+      const banksData = await getBanks();
+      setBanks(banksData.data)
+    }
+    getUserBanks()
+  }, [banks])
 
     const handeFormChange = (e) => {
         const name = e.target.name;
@@ -14,12 +41,37 @@ function IncomesForm(props) {
         });
     };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        alert(`Income data: ${newIncome.bankName} ${newIncome.amount} ${newIncome.incomeCategory} ${newIncome.incomeDescription}`)
-        setNewIncome([])
-        props.setTrigger(false)
+    const createIncome = async (body) => {
+      const response = await fetch(
+        `http://localhost:8500/income`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${cookies.auth_token}`,
+          },
+          body: JSON.stringify(body),
+        }
+      );
+      await response.json();
     };
+
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      const category = newIncome.incomeCategory;
+      const description = newIncome.incomeDescription;
+      const amount = newIncome.amount;
+      const bank = newIncome.bankId;
+        try {
+          await createIncome({ category, description, amount, bank })
+          setNewIncome([])
+          props.setTrigger(false)
+      } catch (error) {
+        console.log(error);
+      }
+      setDisableSubmit(false);
+    };
+
     return (props.trigger) ? (
         <div className='fixed top-0 left-0 w-full h-screen flex justify-center items-center bg-black bg-opacity-40'>
             <div className='relative p-8 bg-white rounded-md'>
@@ -27,13 +79,14 @@ function IncomesForm(props) {
                   <h1 className='text-center font-bold mb-6 text-xl'>Add Income</h1>
                   <label>Bank</label>
                   <select className=' mb-6 shadow-inner border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5'
-                    value={newIncome.bankName || ""}
+                    value={newIncome.bankId || ""}
                     onChange={handeFormChange}
-                    name='bankName'
+                    name='bankId'
                     required>
                         <option value="" disabled selected>Select a registered bank account</option>
-                        <option value="Banco Central - John Doe">#GYHU4578 Banco Central - John Doe</option>
-                        <option value="Davivienda - John A. Doe">#ERTY4712 Davivienda - John A. Doe</option>
+                        {banks.map((bank) => 
+                          <option value={bank.id}>#{bank.account} {bank.name}-{bank.user_name}</option>)
+                        }                       
                   </select>
                   <label>Amount</label>
                   <input className=' mb-6 shadow-inner border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5'
@@ -66,7 +119,7 @@ function IncomesForm(props) {
                   
                   <div className='flex flex-row justify-between'>
                     <button className='flex items-center shadow-md bg-red-500 rounded-lg px-5 py-2' onClick={() => props.setTrigger(false)}>Cancel</button>
-                    <input className='flex items-center shadow-md bg-green-500 rounded-lg px-5 py-2' type='submit' value='Add'/>
+                    <input disabled={disableSubmit} className='flex items-center shadow-md bg-green-500 rounded-lg px-5 py-2' type='submit' value='Add'/>
                   </div>
                 </form>
             </div>

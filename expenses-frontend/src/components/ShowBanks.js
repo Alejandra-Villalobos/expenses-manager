@@ -6,7 +6,6 @@ import { useCookies } from 'react-cookie';
 
 function ShowBanks() {
     const [cookies] = useCookies(['auth_token']);
-    const [disableSubmit, setDisableSubmit] = useState(false);
     const [banks, setBanks] = useState([]);
     const setCur = (curr) => {
       if(curr === 'dollar') return <BsCurrencyDollar/>
@@ -35,7 +34,7 @@ function ShowBanks() {
       setBanks(banksData.data)
     }
     getUserBanks()
-  }, [])
+  }, [banks])
   return (
     <div  className='flex flex-row gap-3 justify-center flex-wrap'>
           {banks.map((bank)=>
@@ -46,7 +45,7 @@ function ShowBanks() {
                 <p className='font-fira italic text-xl'>#{bank.account}</p>
                 <p className='font-fira text-xl flex flex-row items-center'>{setCur(bank.currency)} {bank.amount}</p>
               </div>
-              <p className='font-fira text-center text-xl mt-2 -mb-3'>{bank.user}</p>
+              <p className='font-fira text-center text-xl mt-2 -mb-3'>{bank.user_name}</p>
             </div>
           )}
     </div>

@@ -72,6 +72,7 @@ const Login = () => {
             setErrorLogin('Failed to log in');
           }
           setDisableSubmit(false);
+          setLoginFormValues('');
     };
 
     //Handle registration form submit
@@ -97,6 +98,7 @@ const Login = () => {
             setErrorRegister('Failed to create an account');
           }
           setDisableSubmit(false);
+          setRegFormValues('');
     }
 
     return (

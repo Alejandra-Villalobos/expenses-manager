@@ -2,9 +2,12 @@ import React, { useState, useEffect } from 'react'
 import { ImMinus } from 'react-icons/im'
 import { BiPlusMedical } from 'react-icons/bi'
 import { BsCurrencyBitcoin, BsCurrencyDollar, BsCurrencyEuro } from 'react-icons/bs'
+import { useCookies } from 'react-cookie';
 
 
 function ShowTransactions(props) {
+    const [cookies] = useCookies(['auth_token']);
+    const [disableSubmit, setDisableSubmit] = useState(false);
     var [transactions, setTransactions] = useState([])
 
     const setCur = (curr) => {
@@ -28,27 +31,46 @@ function ShowTransactions(props) {
       }
     }
 
+    const getIncomes = async () => {
+      const response = await fetch(
+        `http://localhost:8500/income`,
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${cookies.auth_token}`,
+          },
+        }
+      );
+      const incomes = await response.json();
+      return incomes;
+    };
+
+    const getOutcomes = async () => {
+      const response = await fetch(
+        `http://localhost:8500/outcome`,
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${cookies.auth_token}`,
+          },
+        }
+      );
+      const outcomes = await response.json();
+      return outcomes;
+    };
+
     useEffect(()=>{
-      async function getTransactions(){
-        const transactionsData = await fetch('banks.json', {method: "GET"})
-        const data = await transactionsData.json()
-        /*
-          Maps the incomes/outcomes in every data and also adds the 'bankName' field, which is included
-          only in data, outside incomes/outcomes
-        */
-        const incomes = data.map((d)=>{
-          d.incomes.map((income)=>{
-            return income['bankName'] = d.bankName
-          }); return d.incomes
-        })
-        const outcomes = data.map((d)=>{
-          d.outcomes.map((outcome)=>{
-            return outcome['bankName'] = d.bankName
-          }); return d.outcomes
-        })
+      async function getUserTransactions(){
+        const incomesData = await getIncomes();
+        const outcomesData = await getOutcomes();
+
+        const incomes = incomesData.data;
+        const outcomes = outcomesData.data;
         setTransactions((incomes.concat(outcomes)).flat())
       }
-      getTransactions()
+      getUserTransactions()
     }, [])
 
     const filterDate = () => {
@@ -74,13 +96,14 @@ function ShowTransactions(props) {
       <>
       <div className='flex flex-row justify-start flex-wrap mb-8 ml-6 gap-3'>
             {transactions.map((transaction, i)=>
-              <div key={i} className={`w-44 mt-5 rounded-md border-2 shadow-md hover:scale-105 hover:ml-4 hover:mr-4 transition-all ${transaction.hasOwnProperty('toAccount') ? prop.out['bg-border'] : prop.in['bg-border'] }`}>
-                <p className={`text-white font-bold font-fira text-cente px-12 ${transaction.hasOwnProperty('toAccount') ? prop.out['p-bg'] : prop.in['p-bg'] }`}>{transaction.hasOwnProperty('toAccount') ? prop.out.type : prop.in.type }</p>
-                <p>{transaction.bankName}</p>
+              <div key={i} className={`w-44 mt-5 rounded-md border-2 shadow-md hover:scale-105 hover:ml-4 hover:mr-4 transition-all ${transaction.hasOwnProperty('to_account') ? prop.out['bg-border'] : prop.in['bg-border'] }`}>
+                <p className={`text-white font-bold font-fira text-cente px-12 ${transaction.hasOwnProperty('to_account') ? prop.out['p-bg'] : prop.in['p-bg'] }`}>{transaction.hasOwnProperty('to_account') ? prop.out.type : prop.in.type }</p>
+                <p>{transaction.bank}</p>
                 <p className='font-fira font-bold text-lg text-center flex items-center justify-center gap-1'>
-                {transaction.hasOwnProperty('toAccount') ? prop.out.symbol : prop.in.symbol} {setCur(transaction.currency)} {transaction.amount}</p>
+                {transaction.hasOwnProperty('to_account') ? prop.out.symbol : prop.in.symbol} {setCur(transaction.currency)} {transaction.amount}</p>
                 <p className='font-fira text-center'>{transaction.category}</p>
-                <p className='font-fira text-center'>{transaction.date}</p>
+                <p className='font-fira text-center'>{transaction.description}</p>
+                <p className='font-fira text-center'>{transaction.add_date}</p>
               </div>
             )}
       </div>

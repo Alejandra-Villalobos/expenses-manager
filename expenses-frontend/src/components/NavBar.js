@@ -26,6 +26,7 @@ function NavBar({ setState, state }) {
       <p>Expenses Manager</p>
       <button className='flex items-center mr-11 gap-x-2 bg-red-500 rounded-lg p-2' onClick={HandleLogout}>
         Cerrar Sesión
+        {error}
         <TbLogout/>
       </button>
     </nav>

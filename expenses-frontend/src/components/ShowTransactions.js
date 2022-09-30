@@ -8,12 +8,36 @@ import { useCookies } from 'react-cookie';
 function ShowTransactions(props) {
     const [cookies] = useCookies(['auth_token']);
     var [transactions, setTransactions] = useState([])
+    const [banks, setBanks] = useState([]);
 
     const setCur = (curr) => {
       if(curr === 'dollar') return <BsCurrencyDollar/>
       else if (curr === 'euro') return <BsCurrencyEuro/>
       else if (curr === 'bitcoin') return <BsCurrencyBitcoin/>
     }
+
+    const getBanks = async () => {
+      const response = await fetch(
+        `http://localhost:8500/bank`,
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${cookies.auth_token}`,
+          },
+        }
+      );
+      const banks = await response.json();
+      return banks;
+    };
+
+    useEffect(()=>{
+      async function getUserBanks(){
+        const banksData = await getBanks();
+        setBanks(banksData.data)
+      }
+      getUserBanks()
+    }, [banks])
     
     const prop = {
       out: {
@@ -65,15 +89,23 @@ function ShowTransactions(props) {
         const incomesData = await getIncomes();
         const outcomesData = await getOutcomes();
 
-        const incomes = incomesData.data;
-        const outcomes = outcomesData.data;
-        setTransactions((incomes.concat(outcomes)).flat().sort((a, b) => a.add_date > b.add_date))
+        var incomes = incomesData.data;
+        
+        var outcomes = outcomesData.data;
+        
+        var added =(incomes.concat(outcomes)).flat()
+        added.map((t) => {
+          var b = banks.filter((b)=> b.id == t.bank)[0]?.name;
+          t.bank = b})
+          setTransactions(added)
       }
       getUserTransactions()
     }, [transactions])
 
+    
+    
     const filterDate = () => {
-      return transactions.filter((t)=>(new Date(t.date) <= props.to && new Date(t.date) >= props.from))
+      return transactions.filter((t)=>(new Date(t.add_date) <= props.to && new Date(t.add_date) >= props.from))
     }
 
     const filterCategory = () => {
@@ -81,7 +113,9 @@ function ShowTransactions(props) {
     }
 
     const filterBanks = () => {
-      return transactions.filter((t)=>props.banks.includes(t.bankName))
+      
+      return transactions.filter((t)=>props.banks.includes(t.bank))
+      
     }
 
     transactions = (props.from === null) || (props.to === null) ? transactions : filterDate()
@@ -91,6 +125,7 @@ function ShowTransactions(props) {
     transactions = (props.banks === null) || (!props.banks.length) ? transactions : filterBanks()
 
     transactions = transactions.sort((a,b)=> a.date < b.date ? 1 : -1)
+    
     return (
       <>
       <div className='flex flex-row justify-start flex-wrap mb-8 ml-6 gap-3'>

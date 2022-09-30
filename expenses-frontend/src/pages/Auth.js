@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useEffect, useContext } from 'react'
-import { Outlet, Link, useNavigate } from "react-router-dom"
+import { Outlet, useNavigate } from "react-router-dom"
 import loginImg from '../assets/login.png'
 import AuthContext from '../context/auth-context';
 

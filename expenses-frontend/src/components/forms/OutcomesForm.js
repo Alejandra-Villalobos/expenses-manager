@@ -139,12 +139,12 @@ function OutcomesForm(props) {
                     name='outcomeCategory'
                     required>
                         <option value="" disabled selected>Select a category</option>
-                        <option value="food">Food</option>
-                        <option value="travel">Travel</option>
-                        <option value="work">Work</option>
-                        <option value="gift">Gift</option>
-                        <option value="selling">Selling</option>
-                        <option value="other">Other</option>
+                        <option value="Food">Food</option>
+                        <option value="Travel">Travel</option>
+                        <option value="Work">Work</option>
+                        <option value="Gift">Gift</option>
+                        <option value="Selling">Selling</option>
+                        <option value="Other">Other</option>
                   </select>
                   <label>Description (optional)</label>
                   <input className=' mb-6 shadow-inner border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5'

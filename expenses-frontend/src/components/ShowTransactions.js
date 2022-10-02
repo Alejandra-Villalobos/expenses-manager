@@ -134,7 +134,7 @@ function ShowTransactions(props) {
                 <p className={`text-white font-bold font-fira text-cente px-12 ${transaction.hasOwnProperty('to_account') ? prop.out['p-bg'] : prop.in['p-bg'] }`}>{transaction.hasOwnProperty('to_account') ? prop.out.type : prop.in.type }</p>
                 <p>{transaction.bank}</p>
                 <p className='font-fira font-bold text-lg text-center flex items-center justify-center gap-1'>
-                {transaction.hasOwnProperty('to_account') ? prop.out.symbol : prop.in.symbol} {setCur(transaction.currency)} {transaction.amount}</p>
+                {transaction.hasOwnProperty('to_account') ? prop.out.symbol : prop.in.symbol} {setCur(transaction.currency)} {transaction.amount.toFixed(2)}</p>
                 <p className='font-fira text-center'>{transaction.category}</p>
                 <p className='font-fira text-center'>{transaction.description}</p>
                 <p className='font-fira text-center'>{transaction.add_date}</p>

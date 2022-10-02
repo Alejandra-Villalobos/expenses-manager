@@ -56,20 +56,36 @@ function IncomesForm(props) {
       await response.json();
     };
 
+    const sumAmount = async (body) => {
+      const response = await fetch(
+        `${process.env.REACT_APP_BACKEND_BASE_URL}/bank/${newIncome.bankId}`,
+        {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${cookies.auth_token}`,
+          },
+          body: JSON.stringify(body),
+        }
+      );
+      await response.json();
+    };
+
     const handleSubmit = async (e) => {
       e.preventDefault();
       const category = newIncome.incomeCategory;
       const description = newIncome.incomeDescription;
-      const amount = newIncome.amount;
+      const amount = parseFloat(newIncome.amount);
       const bank = newIncome.bankId;
         try {
           await createIncome({ category, description, amount, bank })
-          setNewIncome([])
+          await sumAmount({ amount })
           props.setTrigger(false)
       } catch (error) {
         console.log(error);
       }
       setDisableSubmit(false);
+      setNewIncome([])
     };
 
     return (props.trigger) ? (

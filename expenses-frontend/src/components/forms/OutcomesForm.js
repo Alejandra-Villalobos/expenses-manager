@@ -63,6 +63,22 @@ function OutcomesForm(props) {
         e.target.checked ? setTransactionTo(true) : setTransactionTo(false)
     }
 
+    const sumAmount = async (body, id) => {
+      const response = await fetch(
+        `${process.env.REACT_APP_BACKEND_BASE_URL}/bank/${id}`,
+        {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${cookies.auth_token}`,
+          },
+          body: JSON.stringify(body),
+        }
+      );
+      
+      await response.json();
+    };
+
     const handleSubmit = async (e) => {
       e.preventDefault();
       const category = newOutcome.outcomeCategory;
@@ -71,8 +87,11 @@ function OutcomesForm(props) {
       const bank = newOutcome.bankId;
       const to_account = newOutcome.toAccount;
       const to_bank = newOutcome.toUserBank;
+
+      console.log(amount)
         try {
           await createOutcome({ category, description, amount, bank, to_account, to_bank })
+          await sumAmount({ amount }, bank)
           setNewOutcome([])
           props.setTrigger(false)
       } catch (error) {

@@ -1,39 +1,77 @@
-import React, {useEffect, useState} from 'react'
+import React, { useState, useEffect } from 'react'
 import { Chart } from "react-google-charts";
+
+import { useCookies } from 'react-cookie';
 
 //Column chart: Comparison between categories incomes/outcomes
 
 function CategoryChart() {
     const [dataChart, setDataChart] = useState();
-    useEffect(()=>{
-        async function getBanks(){
-        const banksData = await fetch('banks.json', {method: "GET"})
-        const dataBanks = await banksData.json()
+    const [cookies] = useCookies(['auth_token']);
+    const [incomes, setIncomes] = useState([]);
+    const [outcomes, setOutcomes] = useState([]);
 
-        //Sums the amount of money of the incomes/outcomes depending on the category
-        const sumData = (type, cat) => {
-          var amountSum = 0;
-          (dataBanks[0][type]).map((t)=>{
-            if(t.category === cat){
-              amountSum += t.amount
-            }
-            return amountSum
-          })
+    const getIncomes = async () => {
+      const response = await fetch(
+        `${process.env.REACT_APP_BACKEND_BASE_URL}/income`,
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${cookies.auth_token}`,
+          },
+        }
+      );
+      const incomes = await response.json();
+      return incomes;
+    };
+
+    const getOutcomes = async () => {
+      const response = await fetch(
+        `${process.env.REACT_APP_BACKEND_BASE_URL}/outcome`,
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${cookies.auth_token}`,
+          },
+        }
+      );
+      const outcomes = await response.json();
+      return outcomes;
+    };
+
+    useEffect(()=>{
+      async function getUserTransactions(){
+        const incomesData = await getIncomes();
+        const outcomesData = await getOutcomes();
+
+        setIncomes(incomesData.data);
+        setOutcomes(outcomesData.data);
+      }
+      getUserTransactions()
+      const sumData = (type, cat) => {
+        var amountSum = 0;
+        ([type][0]).map((t)=>{
+          if(t.category == cat){
+            amountSum += t.amount
+          }
           return amountSum
-        }
-        const data = [
-          ["Category", "Income", "Outcome"],
-          ["Food", sumData('incomes', 'Food'), sumData('outcomes', 'Food')],
-          ["Travel", sumData('incomes', 'Travel'), sumData('outcomes', 'Travel')],
-          ["Work", sumData('incomes', 'Work'), sumData('outcomes', 'Work')],
-          ["Gift", sumData('incomes', 'Gift'), sumData('outcomes', 'Gift')],
-          ["Selling", sumData('incomes', 'Selling'), sumData('outcomes', 'Selling')],
-          ["Other", sumData('incomes', 'Other'), sumData('outcomes', 'Other')]
-        ];
-        setDataChart(data)
-        }
-        getBanks()
-    }, [])
+        })
+        return amountSum
+      }
+
+      const data = [
+        ["Category", "Income", "Outcome"],
+        ["Food", sumData(incomes, 'Food'), sumData(outcomes, 'Food')],
+        ["Travel", sumData(incomes, 'Travel'), sumData(outcomes, 'Travel')],
+        ["Work", sumData(incomes, 'Work'), sumData(outcomes, 'Work')],
+        ["Gift", sumData(incomes, 'Gift'), sumData(outcomes, 'Gift')],
+        ["Selling", sumData(incomes, 'Selling'), sumData(outcomes, 'Selling')],
+        ["Other", sumData(incomes, 'Other'), sumData(outcomes, 'Other')]
+      ];
+      setDataChart(data)
+    }, [incomes.length, outcomes.length])
 
     const options = {
         chartArea: { width: "75%" },

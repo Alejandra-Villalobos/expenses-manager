@@ -28,7 +28,7 @@ function BankFilter(props) {
         setBanks([...new Set(bankName)])
       }
       getUserBanks()
-    }, [banks])
+    }, [banks.length])
 
     const handleChecked = (e) => {
         if(e.target.checked) setBanksArr(prev => [...prev, e.target.value])

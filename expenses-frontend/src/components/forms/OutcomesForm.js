@@ -12,7 +12,7 @@ function OutcomesForm(props) {
 
     const getBanks = async () => {
       const response = await fetch(
-        `http://localhost:8500/bank`,
+        `${process.env.REACT_APP_BACKEND_BASE_URL}/bank`,
         {
           method: 'GET',
           headers: {
@@ -31,7 +31,7 @@ function OutcomesForm(props) {
         setBanks(banksData.data)
       }
       getUserBanks()
-    }, [banks])
+    }, [banks.length])
 
     const handeFormChange = (e) => {
         const name = e.target.name;
@@ -46,7 +46,7 @@ function OutcomesForm(props) {
 
     const createOutcome = async (body) => {
       const response = await fetch(
-        `http://localhost:8500/outcome`,
+        `${process.env.REACT_APP_BACKEND_BASE_URL}/outcome`,
         {
           method: 'POST',
           headers: {

@@ -20,6 +20,7 @@ root.render(
       <React.StrictMode>
         <AuthProvider>
           <Routes>
+            
             <Route index element={<Auth/>}/>
             <Route path='/home' element={<Home/>}/>
             <Route path='/banks' element={<Banks/>}/>

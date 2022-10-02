@@ -1,25 +1,47 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Chart } from "react-google-charts";
+
+import { useCookies } from 'react-cookie';
 
 //Pie chart: amount of money in every bank account
 
 function BankChart() {
-  const [chartData, setChartData] = useState ()
-  
-  useEffect(()=>{
-    async function getBanks(){
-      const banksData = await fetch('banks.json', {method: "GET"})
-      const data = await banksData.json()
-      const dataChart = [
-        [["Bank", "Amount"]],
-        data.map((bank)=> [bank.bankName, bank.amount])
-      ].flat();
-      setChartData(dataChart)
+  const [chartData, setChartData] = useState ();
+  const [cookies] = useCookies(['auth_token']);
+  const [banks, setBanks] = useState([]);
+
+  const getBanks = async () => {
+      const response = await fetch(
+        `${process.env.REACT_APP_BACKEND_BASE_URL}/bank`,
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${cookies.auth_token}`,
+          },
+        }
+      );
+      const banks = await response.json();
+      return banks;
+    };
+
+    async function getUserBanks(){
+      const banksData = await getBanks();
+      setBanks(banksData.data)
+      
     }
-    getBanks()
+
+  useEffect(()=>{
     
+    getUserBanks()
+    const dataChart = [
+      [["Bank", "Amount"]],
+      banks.map((bank)=> [bank.name, bank.amount])
+    ].flat();
+    setChartData(dataChart)
     
-  }, [])
+  }, [banks.length])
+
 
   const options = {
     chartArea: { width: "100%" },

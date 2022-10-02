@@ -18,7 +18,7 @@ function ShowTransactions(props) {
 
     const getBanks = async () => {
       const response = await fetch(
-        `http://localhost:8500/bank`,
+        `${process.env.REACT_APP_BACKEND_BASE_URL}/bank`,
         {
           method: 'GET',
           headers: {
@@ -37,7 +37,7 @@ function ShowTransactions(props) {
         setBanks(banksData.data)
       }
       getUserBanks()
-    }, [banks])
+    }, [banks.length])
     
     const prop = {
       out: {
@@ -56,7 +56,7 @@ function ShowTransactions(props) {
 
     const getIncomes = async () => {
       const response = await fetch(
-        `http://localhost:8500/income`,
+        `${process.env.REACT_APP_BACKEND_BASE_URL}/income`,
         {
           method: 'GET',
           headers: {
@@ -71,7 +71,7 @@ function ShowTransactions(props) {
 
     const getOutcomes = async () => {
       const response = await fetch(
-        `http://localhost:8500/outcome`,
+        `${process.env.REACT_APP_BACKEND_BASE_URL}/outcome`,
         {
           method: 'GET',
           headers: {
@@ -100,7 +100,7 @@ function ShowTransactions(props) {
           setTransactions(added)
       }
       getUserTransactions()
-    }, [transactions])
+    }, [transactions.length])
 
     
     

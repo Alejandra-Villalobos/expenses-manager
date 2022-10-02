@@ -19,7 +19,7 @@ function Popup(props) {
 
   const createBank = async (body) => {
     const response = await fetch(
-      `http://localhost:8500/bank`,
+      `${process.env.REACT_APP_BACKEND_BASE_URL}/bank`,
       {
         method: 'POST',
         headers: {

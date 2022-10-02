@@ -13,7 +13,7 @@ const AuthProvider = (props) => {
     return new Promise(async (resolve, reject) => {
       try {
         const response = await fetch(
-          `http://localhost:8500/register`,
+          `${process.env.REACT_APP_BACKEND_BASE_URL}/register`,
           {
             method: 'POST',
             headers: {
@@ -41,8 +41,8 @@ const AuthProvider = (props) => {
     return new Promise(async (resolve, reject) => {
       try {
         const response = await fetch(
-          //`${process.env.REACT_APP_BACKEND_BASE_URL}/login`,
-          `http://localhost:8500/login`,
+          `${process.env.REACT_APP_BACKEND_BASE_URL}/login`,
+          //`http://localhost:8500/login`,
           {
             method: 'POST',
             headers: {

@@ -15,7 +15,7 @@ function ShowBanks() {
 
     const getBanks = async () => {
       const response = await fetch(
-        `http://localhost:8500/bank`,
+        `${process.env.REACT_APP_BACKEND_BASE_URL}/bank`,
         {
           method: 'GET',
           headers: {
@@ -34,7 +34,7 @@ function ShowBanks() {
       setBanks(banksData.data)
     }
     getUserBanks()
-  }, [banks])
+  }, [banks.length])
   return (
     <div  className='flex flex-row gap-3 justify-center flex-wrap'>
           {banks.map((bank)=>

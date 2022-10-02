@@ -1,4 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+
 import SideMenu from '../components/SideMenu.js'
 import NavBar from '../components/NavBar.js'
 import IncomesForm from '../components/forms/IncomesForm'
@@ -8,7 +10,18 @@ import ShowTransactions from '../components/ShowTransactions.js'
 import BankChart from '../components/charts/BankChart.js'
 import CategoryChart from '../components/charts/CategoryChart.js'
 
+import AuthContext from '../context/auth-context';
+
 const Home = () => {
+  const navigate = useNavigate();
+  const authCtx = useContext(AuthContext);
+
+  useEffect(() => {
+    if (Object.entries(authCtx.currentUser).length == 0) {
+      navigate('/', { replace: true });
+    }
+  }, []);
+  
   //Toggle side menu
   const [showMenu, setShowMenu] = useState(true);
 

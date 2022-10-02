@@ -1,11 +1,24 @@
-import React, { useState } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+
+import { MdAddCircle } from 'react-icons/md'
+
 import SideMenu from '../components/SideMenu.js'
 import NavBar from '../components/NavBar.js'
 import BankForm from '../components/forms/BankForm'
-import { MdAddCircle } from 'react-icons/md'
 import ShowBanks from '../components/ShowBanks.js'
 
+import AuthContext from '../context/auth-context';
+
 const Banks = () => {
+  const navigate = useNavigate();
+  const authCtx = useContext(AuthContext);
+
+  useEffect(() => {
+    if (Object.entries(authCtx.currentUser).length == 0) {
+      navigate('/', { replace: true });
+    }
+  }, []);
   //Toggle side menu
   const [showMenu, setShowMenu] = useState(true)
 

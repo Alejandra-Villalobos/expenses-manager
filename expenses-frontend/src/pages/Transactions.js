@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 import { VscDebugRestart } from 'react-icons/vsc'
 
@@ -14,7 +15,19 @@ import DateFilter from '../components/filters/DateFilter.js'
 import CategoryFilter from '../components/filters/CategoryFilter.js'
 import BankFilter from '../components/filters/BankFilter.js'
 
+import AuthContext from '../context/auth-context';
+
+
 function Transactions() {
+  const navigate = useNavigate();
+  const authCtx = useContext(AuthContext);
+
+  useEffect(() => {
+    if (Object.entries(authCtx.currentUser).length == 0) {
+      navigate('/', { replace: true });
+    }
+  }, []);
+
   //Toggle side menu
   const [showMenu, setShowMenu] = useState(true)
 

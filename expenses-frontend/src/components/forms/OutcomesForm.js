@@ -128,11 +128,16 @@ function OutcomesForm(props) {
 
       const restAmount = `-${amount}`;
       const sendBank = AllBanks.filter((bank) => bank.name === to_bank && bank.account === to_account);
+      const fromBank = banks.filter((b) => Number(b.id) === Number(newOutcome.bankId));
+
+      if(fromBank[0].amount < amount){
+        setErrot('Not enough money');
+        return
+      }
         try { 
           if(to_account && to_bank && sendBank){ 
               const sendId = sendBank[0].id;
               const sendPerson = sendBank[0].person;
-              const fromBank = banks.filter((b) => Number(b.id) === Number(newOutcome.bankId));
               const inDescription = `Transfered from ${fromBank[0].name} - ${fromBank[0].user_name} - ${fromBank[0].account}`
               
               const sendCurr = sendBank[0].currency;
@@ -153,20 +158,17 @@ function OutcomesForm(props) {
 
               await createExternalIncome({ category, 'description': inDescription, 'amount': amountConversion, 'person': sendPerson }, sendId)
               await sumAmount({ 'amount': amountConversion }, sendId)
-
-              props.setTrigger(false)
           }
             await createOutcome({ category, description, amount, bank, to_account, to_bank })
-            await sumAmount({ 'amount': restAmount }, bank)
-            setNewOutcome([])
+            await sumAmount({ 'amount': restAmount }, bank) 
             props.setTrigger(false)
       } catch (error) {
         console.log(error);
         setErrot('Banco no encontrado');
         console.log(sendBank)
-        setNewOutcome([])
       }
       setDisableSubmit(false);
+      setNewOutcome([])
     };
     
     return (props.trigger) ? (

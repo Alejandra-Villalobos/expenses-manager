@@ -96,13 +96,18 @@ function ShowTransactions(props) {
         var added =(incomes.concat(outcomes)).flat()
         added.map((t) => {
           var b = banks.filter((b)=> b.id == t.bank)[0]?.name;
-          t.bank = b})
+          t.bankName = b})
           setTransactions(added)
       }
       getUserTransactions()
     }, [transactions.length])
 
-    
+    const curSymbol = (transaction) => {
+      const transactionBank = banks.filter((b) => Number(b.id) === Number(transaction.bank))
+      if (transactionBank[0]?.currency === 'dollar') return '$'
+      else if (transactionBank[0]?.currency === 'euro') return '€'
+      else return '₿'
+    }
     
     const filterDate = () => {
       return transactions.filter((t)=>(new Date(t.add_date) <= props.to && new Date(t.add_date) >= props.from))
@@ -114,7 +119,7 @@ function ShowTransactions(props) {
 
     const filterBanks = () => {
       
-      return transactions.filter((t)=>props.banks.includes(t.bank))
+      return transactions.filter((t)=>props.banks.includes(t.bankName))
       
     }
 
@@ -124,7 +129,7 @@ function ShowTransactions(props) {
 
     transactions = (props.banks === null) || (!props.banks.length) ? transactions : filterBanks()
 
-    transactions = transactions.sort((a,b)=> a.date < b.date ? 1 : -1)
+    transactions = transactions.sort((a,b)=> a.add_date < b.add_date ? 1 : -1)
     
     return (
       <>
@@ -132,9 +137,9 @@ function ShowTransactions(props) {
             {transactions.map((transaction, i)=>
               <div key={i} className={`w-44 mt-5 rounded-md border-2 shadow-md hover:scale-105 hover:ml-4 hover:mr-4 transition-all ${transaction.hasOwnProperty('to_account') ? prop.out['bg-border'] : prop.in['bg-border'] }`}>
                 <p className={`text-white font-bold font-fira text-cente px-12 ${transaction.hasOwnProperty('to_account') ? prop.out['p-bg'] : prop.in['p-bg'] }`}>{transaction.hasOwnProperty('to_account') ? prop.out.type : prop.in.type }</p>
-                <p>{transaction.bank}</p>
+                <p className='font-fira font-bold text-md text-center'>{transaction.bankName}</p>
                 <p className='font-fira font-bold text-lg text-center flex items-center justify-center gap-1'>
-                {transaction.hasOwnProperty('to_account') ? prop.out.symbol : prop.in.symbol} {setCur(transaction.currency)} {transaction.amount.toFixed(2)}</p>
+                {transaction.hasOwnProperty('to_account') ? prop.out.symbol : prop.in.symbol} {setCur(transaction.currency)} {curSymbol(transaction)}{transaction.amount.toFixed(2)}</p>
                 <p className='font-fira text-center'>{transaction.category}</p>
                 <p className='font-fira text-center'>{transaction.description}</p>
                 <p className='font-fira text-center'>{transaction.add_date}</p>

@@ -47,13 +47,12 @@ function Transactions() {
 
 
   //Page height to set the side menu height
-  const viewHeight = window.outerHeight;
 
   return (
     <>
     <NavBar setState={setShowMenu} state={showMenu}/>
-    <div style={{ height: viewHeight }} className='flex flex-row bg-emerald-100 mt-14 h-full w-full overflow-x-hidden'>
-    {showMenu && <SideMenu style={{ height: viewHeight }}/>}
+    <div className='flex flex-row bg-emerald-100 mt-14 h-full w-full overflow-x-hidden'>
+    {showMenu && <SideMenu/>}
     <div className='w-full bg-emerald-100 pl-16 pr-8 mt-8'>
       <h1 className='text-center font-bold text-2xl'>Transactions</h1>
         <section className='flex flex-row justify-center items-center gap-x-5 mt-8'>

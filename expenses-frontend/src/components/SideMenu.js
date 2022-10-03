@@ -4,7 +4,7 @@ import { BsBank } from 'react-icons/bs'
 import { GrTransaction } from 'react-icons/gr'
 
 const SideMenu = () => {
-  const path = window.location.pathname
+  const path = window.location.pathname;
   return (
     <>
     <div className='side-menu flex flex-col w-24 bg-cyan-600'>

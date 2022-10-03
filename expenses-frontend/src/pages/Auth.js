@@ -113,7 +113,7 @@ const Login = () => {
                             <div>
                                 {errorLogin && <p className='bg-red-300'>{errorLogin}</p>}
                                 <label className="block mb-2 text-sm font-medium text-gray-900 ">Email</label>
-                                <input type="email" className="bg-white shadow-inner border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="John" required 
+                                <input type="email" className="bg-white shadow-inner border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="example@gmail.com" required 
                                 value={loginFormValues.userMail || ""}
                                 onChange={handleLoginFormChange}
                                 name="userMail"/>
@@ -138,7 +138,7 @@ const Login = () => {
                 <form onSubmit={handleRegSubmit} className="bg-white rounded-lg border-gray-300 shadow-md border-1 p-5">
                     <div className="grid gap-6 mb-6 md:grid-cols-1">
                         <div>
-                            {errorRegister && <p className='bg-red-300'>{errorRegister}</p>}
+                            {errorRegister && <p className='text-red-700 bg-red-200 text-center mb-3 font-bold'>{errorRegister}</p>}
                             <label className="block mb-2 text-sm font-medium text-gray-900 ">User</label>
                             <input type="text" className="bg-white shadow-inner border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="John" required 
                             name='userName'

@@ -101,7 +101,7 @@ function IncomesForm(props) {
                     required>
                         <option value="" disabled selected>Select a registered bank account</option>
                         {banks.map((bank) => 
-                          <option value={bank.id}>#{bank.account} {bank.name}-{bank.user_name}</option>)
+                          <option key={bank.id} value={bank.id}>#{bank.account} {bank.name}-{bank.user_name}</option>)
                         }                       
                   </select>
                   <label>Amount</label>

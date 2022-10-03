@@ -3,9 +3,15 @@ import React, { useState, useEffect } from 'react'
 
 function OutcomesForm(props) {
     const [cookies] = useCookies(['auth_token']);
+
     const [newOutcome, setNewOutcome] = useState([]);
+
     const [banks, setBanks] = useState([]);
+    const [AllBanks, setAllBanks] = useState([]);
+
     const [disableSubmit, setDisableSubmit] = useState(false);
+
+    const [error, setErrot] = useState('');
     
     //Toggle transfer to account option
     const [transactionTo, setTransactionTo] = useState(false);
@@ -25,10 +31,27 @@ function OutcomesForm(props) {
       return banks;
     };
 
+    const getAllBanks = async () => {
+      const response = await fetch(
+        `${process.env.REACT_APP_BACKEND_BASE_URL}/bank_all`,
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${cookies.auth_token}`,
+          },
+        }
+      );
+      const banks = await response.json();
+      return banks;
+    };
+
     useEffect(()=>{
       async function getUserBanks(){
         const banksData = await getBanks();
-        setBanks(banksData.data)
+        const allBanksData = await getAllBanks();
+        setBanks(banksData.data);
+        setAllBanks(allBanksData.data);
       }
       getUserBanks()
     }, [banks.length])
@@ -47,6 +70,21 @@ function OutcomesForm(props) {
     const createOutcome = async (body) => {
       const response = await fetch(
         `${process.env.REACT_APP_BACKEND_BASE_URL}/outcome`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${cookies.auth_token}`,
+          },
+          body: JSON.stringify(body),
+        }
+      );
+      await response.json();
+    };
+
+    const createExternalIncome = async (body, bank) => {
+      const response = await fetch(
+        `${process.env.REACT_APP_BACKEND_BASE_URL}/income/${bank}`,
         {
           method: 'POST',
           headers: {
@@ -88,14 +126,45 @@ function OutcomesForm(props) {
       const to_account = newOutcome.toAccount;
       const to_bank = newOutcome.toUserBank;
 
-      console.log(amount)
-        try {
-          await createOutcome({ category, description, amount, bank, to_account, to_bank })
-          await sumAmount({ amount }, bank)
-          setNewOutcome([])
-          props.setTrigger(false)
+      const restAmount = `-${amount}`;
+      const sendBank = AllBanks.filter((bank) => bank.name === to_bank && bank.account === to_account);
+        try { 
+          if(to_account && to_bank && sendBank){ 
+              const sendId = sendBank[0].id;
+              const sendPerson = sendBank[0].person;
+              const fromBank = banks.filter((b) => Number(b.id) === Number(newOutcome.bankId));
+              const inDescription = `Transfered from ${fromBank[0].name} - ${fromBank[0].user_name} - ${fromBank[0].account}`
+              
+              const sendCurr = sendBank[0].currency;
+              const fromCurr = fromBank[0].currency;
+              var amountConversion = amount;
+
+              if(fromCurr === sendCurr) amountConversion=amountConversion;
+
+              else if (fromCurr === 'bitcoin' && sendCurr === 'dollar') amountConversion*= 19265.2;
+              else if (fromCurr === 'bitcoin' && sendCurr === 'euro') amountConversion *= 19581.4;
+
+              else if (fromCurr === 'dollar' && sendCurr === 'bitcoin') amountConversion *= 0.000053;
+              else if (fromCurr === 'dollar' && sendCurr === 'euro') amountConversion *= 1.02;
+
+              else if (fromCurr === 'euro' && sendCurr === 'bitcoin') amountConversion *= 0.000052;
+              else if (fromCurr === 'euro' && sendCurr === 'dollar') amountConversion *= 0.98;
+              
+
+              await createExternalIncome({ category, 'description': inDescription, 'amount': amountConversion, 'person': sendPerson }, sendId)
+              await sumAmount({ 'amount': amountConversion }, sendId)
+
+              props.setTrigger(false)
+          }
+            await createOutcome({ category, description, amount, bank, to_account, to_bank })
+            await sumAmount({ 'amount': restAmount }, bank)
+            setNewOutcome([])
+            props.setTrigger(false)
       } catch (error) {
         console.log(error);
+        setErrot('Banco no encontrado');
+        console.log(sendBank)
+        setNewOutcome([])
       }
       setDisableSubmit(false);
     };
@@ -113,7 +182,7 @@ function OutcomesForm(props) {
                     required>
                         <option value="" disabled selected>Select a registered bank account</option>
                         {banks.map((bank) => 
-                          <option value={bank.id}>#{bank.account} {bank.name}-{bank.user_name}</option>)
+                          <option key={bank.id} value={bank.id}>#{bank.account} {bank.name}-{bank.user_name}</option>)
                         }   
                   </select>
                   <label className="inline-flex relative items-center cursor-pointer mb-6">
@@ -121,6 +190,7 @@ function OutcomesForm(props) {
                    <div className="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-blue-300 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
                    <span className="ml-3 text-sm font-medium text-gray-900">This transaction is for another account</span>
                   </label>
+                  {error && <p className='text-red-700 bg-red-200 text-center mb-3 font-bold'>{error}</p>}
                   {transactionTo &&
                   <div className='flex flex-row items-center mb-6 gap-3'>
                     <div>
@@ -174,7 +244,7 @@ function OutcomesForm(props) {
                     placeholder="Dinner payment from Jane"/>
                   
                   <div className='flex flex-row justify-between'>
-                    <button className='flex items-center shadow-md bg-red-500 rounded-lg px-5 py-2' onClick={() => {props.setTrigger(false); setTransactionTo(false)}}>Cancel</button>
+                    <button className='flex items-center shadow-md bg-red-500 rounded-lg px-5 py-2' onClick={() => {props.setTrigger(false); setTransactionTo(false); setErrot('')}}>Cancel</button>
                     <input disabled={disableSubmit} className='flex items-center shadow-md bg-green-500 rounded-lg px-5 py-2' type='submit' value='Add'/>
                   </div>
                 </form>

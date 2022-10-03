@@ -43,7 +43,7 @@ function ShowBanks() {
               <FcSimCardChip size={46}/>
               <div className='flex flex-row justify-between'>
                 <p className='font-fira italic text-xl'>#{bank.account}</p>
-                <p className='font-fira text-xl flex flex-row items-center'>{setCur(bank.currency)} {bank.amount}</p>
+                <p className='font-fira text-xl flex flex-row items-center'>{setCur(bank.currency)} {bank.amount.toFixed(2)}</p>
               </div>
               <p className='font-fira text-center text-xl mt-2 -mb-3'>{bank.user_name}</p>
             </div>

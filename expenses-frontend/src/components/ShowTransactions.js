@@ -120,7 +120,11 @@ function ShowTransactions(props) {
     const filterBanks = () => {
       
       return transactions.filter((t)=>props.banks.includes(t.bankName))
-      
+    }
+
+    const formatDate = (tDate) => {
+      tDate = new Date();
+      return `${tDate.getMonth()+1}/${tDate.getDate()}/${tDate.getFullYear()}`
     }
 
     transactions = (props.from === null) || (props.to === null) ? transactions : filterDate()
@@ -135,15 +139,15 @@ function ShowTransactions(props) {
       <>
       <div className='flex flex-row justify-start flex-wrap mb-8 ml-6 gap-3'>
             {transactions.map((transaction, i)=>
-              <div key={i} className={`w-44 mt-5 rounded-md border-2 shadow-md hover:scale-105 hover:ml-4 hover:mr-4 transition-all ${transaction.hasOwnProperty('to_account') ? prop.out['bg-border'] : prop.in['bg-border'] }`}>
+              <div key={i} className={`w-56 mt-5 rounded-md border-2 shadow-md hover:scale-105 hover:ml-4 hover:mr-4 transition-all ${transaction.hasOwnProperty('to_account') ? prop.out['bg-border'] : prop.in['bg-border'] }`}>
                 <p className={`text-white font-bold font-fira text-cente px-12 ${transaction.hasOwnProperty('to_account') ? prop.out['p-bg'] : prop.in['p-bg'] }`}>{transaction.hasOwnProperty('to_account') ? prop.out.type : prop.in.type }</p>
                 <p className='font-fira font-bold text-md text-center'>{transaction.bankName}</p>
                 <p className='font-fira font-bold text-lg text-center flex items-center justify-center gap-1'>
                 {transaction.hasOwnProperty('to_account') ? prop.out.symbol : prop.in.symbol} {setCur(transaction.currency)} {curSymbol(transaction)}{transaction.amount.toFixed(2)}</p>
                 <p className='font-fira text-center'>{transaction.category}</p>
-                <p className='font-fira text-center'>{transaction.description}</p>
-                <p className='font-fira text-center'>{transaction.add_date}</p>
-                {transaction.to_account != null && <p className='font-fira text-center'>#{transaction.to_account} - {transaction.to_bank}</p>}
+                <p className='font-fira text-center'>Description: {transaction.description}</p>
+                <p className='font-fira text-center'>{formatDate(transaction.add_date)}</p>
+                {transaction.to_account != null && <p className='font-fira text-center'>Sent to: #{transaction.to_account} - {transaction.to_bank}</p>}
               </div>
             )}
       </div>

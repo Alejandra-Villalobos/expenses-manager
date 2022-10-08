@@ -80,7 +80,7 @@ function CategoryChart() {
         },
         backgroundColor: 'transparent',
         legend: 'bottom',
-        width: 500,
+        width: 800,
         height: 400,
         colors: ['#0b65db', '#db0b43']
       };

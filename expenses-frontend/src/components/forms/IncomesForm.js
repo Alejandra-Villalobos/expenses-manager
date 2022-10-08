@@ -81,6 +81,9 @@ function IncomesForm(props) {
           await createIncome({ category, description, amount, bank })
           await sumAmount({ amount })
           props.setTrigger(false)
+          window.location.reload(false);
+          setDisableSubmit(false);
+          setNewIncome([])
       } catch (error) {
         console.log(error);
       }

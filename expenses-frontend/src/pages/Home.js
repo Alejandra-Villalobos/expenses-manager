@@ -29,14 +29,11 @@ const Home = () => {
   const [showIncomeForm, setShowIncomeForm] = useState(false);
   const [showOutcomeForm, setShowOutcomeForm] = useState(false);
 
-  //Page height to set the side menu height
-  const viewHeight = window.outerHeight;
-
   return (
     <>
     <NavBar setState={setShowMenu} state={showMenu}/>
-    <div className='flex flex-row bg-emerald-100 mt-14 h-full w-full overflow-x-hidden'>
-    {showMenu && <SideMenu  style={{ height: viewHeight }}/>}
+    <div className='flex flex-row bg-emerald-100 mt-14 w-full'>
+    {showMenu && <SideMenu/>}
       <div className='w-full pl-16 pr-8 mt-8'>
       <h1 className='text-center font-bold text-2xl w-full'>Dashboard</h1>
         <section className='mt-8 flex flex-row justify-between'>

@@ -43,6 +43,8 @@ function Popup(props) {
         await createBank({ account, name, currency, amount, user_name })
         setNewBank([])
         props.setTrigger(false)
+        window.location.reload(false);
+        setDisableSubmit(false);
     } catch (error) {
       console.log(error);
     }

@@ -47,14 +47,14 @@ function BankChart() {
     chartArea: { width: "100%" },
     backgroundColor: 'transparent',
     legend: 'bottom',
-    width: 500,
+    width: 850,
     height: 400,
     is3D: true,
   };
   
   return (
-    <div className='flex flex-col content-center w-full items-center'>
-      <h1 className='text-center font-bold text-2xl -mb-8 -ml-11'>Bank amount distribution</h1>
+    <div className='flex flex-col w-full '>
+      <h1 className='text-center font-bold text-2xl -mb-8'>Bank amount distribution</h1>
       <Chart
       chartType="PieChart"
       data={chartData}

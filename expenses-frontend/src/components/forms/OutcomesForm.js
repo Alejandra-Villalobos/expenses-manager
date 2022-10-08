@@ -138,7 +138,7 @@ function OutcomesForm(props) {
           if(to_account && to_bank && sendBank){ 
               const sendId = sendBank[0].id;
               const sendPerson = sendBank[0].person;
-              const inDescription = `Transfered from ${fromBank[0].name} - ${fromBank[0].user_name} - ${fromBank[0].account}`
+              const inDescription = `Transfered from ${fromBank[0].name} - ${fromBank[0].user_name} - #${fromBank[0].account}`
               
               const sendCurr = sendBank[0].currency;
               const fromCurr = fromBank[0].currency;
@@ -162,6 +162,9 @@ function OutcomesForm(props) {
             await createOutcome({ category, description, amount, bank, to_account, to_bank })
             await sumAmount({ 'amount': restAmount }, bank) 
             props.setTrigger(false)
+            window.location.reload(false);
+            setDisableSubmit(false);
+            setNewOutcome([])
       } catch (error) {
         console.log(error);
         setErrot('Banco no encontrado');

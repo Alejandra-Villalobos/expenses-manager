@@ -1,8 +1,12 @@
+## REPO
+# docker tag expenses-front:0.1.0-nginx-alpine alejandravillalobos/expenses-front:0.1.0-nginx-alpine
+# docker push alejandravillalobos/expenses-front:0.1.0-nginx-alpine
+
 ## Build
-# docker build -t expenses-front:0.1.0-nginx-alpine .
+# docker build -t expenses-front:0.1.1-nginx-alpine .
 
 ## RUN
-# docker run -p 3000:80 -d expenses-front:0.1.0-nginx-alpine
+# docker run -p 3000:80 -d expenses-front:0.1.1-nginx-alpine
 
 FROM node:18.9.0 as compilacion
 
